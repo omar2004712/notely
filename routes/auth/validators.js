@@ -84,5 +84,5 @@ module.exports = {
             return true;
         })
         .isLength({ min: 8 })
-        .withMessage('passwords must be longer than 8 characters'),
+        .withMessage('password must be longer than 8 characters'), // fixed passwords -> password
 };
