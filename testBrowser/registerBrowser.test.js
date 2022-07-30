@@ -6,7 +6,6 @@ describe('Browser test', () => {
         const [loginSubSign, registerSubSign] =
             document.querySelectorAll('.sub-sign');
 
-        console.log(loginSubSign);
         loginSubSign.dispatchEvent(new Event('click'));
         assert(!Array.from(loginForm.classList).includes('hidden'));
         assert(Array.from(registerForm.classList).includes('hidden'));
@@ -14,30 +13,36 @@ describe('Browser test', () => {
     });
 
     it('shows error messages', (done) => {
-        document.querySelector('.name').value = '';
-        document.querySelector('.password').value = 'passw';
-        document.querySelector('.confirmPassword').value = 'password';
-        document
+        const registerForm = document.querySelector('.register');
+        registerForm.querySelector('.name').value = '';
+        registerForm.querySelector('.password').value = 'passw';
+        registerForm.querySelector('.confirmPassword').value = 'password';
+        registerForm
             .querySelector('.register-submit')
             .dispatchEvent(new Event('click'));
-
-        const nameLabel = document.querySelector('.name-error');
-        const passwordLabel = document.querySelector('.password-error');
-        const confirmPasswordLabel = document.querySelector(
-            '.confirmPassword-error'
-        );
-        assert.strictEqual(
-            nameLabel.innerText,
-            'Name must be between 30 and 0 characters'
-        );
-        assert.strictEqual(
-            passwordLabel.innerText,
-            'password must be longer than 8 characters'
-        );
-        assert.strictEqual(
-            confirmPasswordLabel.innerText,
-            'passwords must match'
-        );
-        done();
+        setTimeout(() => {
+            // fix: delayed the assertion because the assertion will happen
+            // before the request is resolved and handled
+            // the 500ms delay is arbitrary in case of any errors try increasing
+            // the delay 1000ms
+            const nameLabel = registerForm.querySelector('.name-error');
+            const passwordLabel = registerForm.querySelector('.password-error');
+            const confirmPasswordLabel = registerForm.querySelector(
+                '.confirmPassword-error'
+            );
+            assert.strictEqual(
+                nameLabel.innerText,
+                'Name must be between 30 and 0 characters'
+            );
+            assert.strictEqual(
+                passwordLabel.innerText,
+                'password must be longer than 8 characters'
+            );
+            assert.strictEqual(
+                confirmPasswordLabel.innerText,
+                'passwords must match'
+            );
+            done();
+        }, 500);
     });
 });
