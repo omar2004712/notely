@@ -7,14 +7,7 @@ const NoteSchema = new Schema({
 });
 
 const UserSchema = new Schema({
-    email: {
-        type: String,
-        required: [true, 'Email is required'],
-        validate: {
-            validator: (email) => email.length >= 5,
-            message: 'Email must be longer than 5 letters',
-        },
-    },
+    // deleted the email field
     name: String,
     password: {
         type: String,

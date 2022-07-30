@@ -1,0 +1,124 @@
+:root {
+    --border-color: rgb(0, 153, 255);
+    --head-color: rgb(0, 98, 168);
+    --text-color: rgb(0, 126, 210);
+}
+* {
+    margin: 0px;
+    font-family: 'Roboto Mono';
+    font-weight: 500;
+}
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.root {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+}
+h1 {
+    font-size: 60px;
+    color: var(--head-color);
+    font-weight: 600;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.forms {
+    display: flex;
+    justify-content: center;
+}
+.register,
+.login {
+    height: 380px;
+    width: 350px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 4px;
+    border: 2px var(--border-color) dashed;
+    margin-right: 3px;
+}
+.register-sign {
+    width: 100%;
+    display: flex;
+}
+.main-sign,
+.sub-sign {
+    width: 50%;
+    height: 50px;
+    display: grid;
+    place-items: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--head-color);
+}
+
+.main-sign {
+    cursor: default;
+}
+
+.sub-sign {
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+.register-form-container {
+    width: 100%;
+    height: calc(100% - 50px);
+    display: grid;
+    place-items: center;
+    grid-template-rows: 1fr 60px;
+}
+.register-form-container form {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    gap: 8px;
+}
+.register-form-container form input,
+.register-form-container button {
+    padding-left: 4px;
+    padding-right: 4px;
+    height: 50px;
+    font-size: 20px;
+    outline: none;
+    border: 1px solid transparent;
+    border-radius: 3px;
+}
+.register-form-container button {
+    width: 90%;
+    background-color: var(--text-color);
+    color: white;
+    cursor: pointer;
+    font-weight: 600;
+}
+.register-form-container button:hover {
+    opacity: 0.8;
+}
+.register-form-container button:active {
+    font-size: 18px;
+}
+.register-form-container form input {
+    color: var(--text-color);
+}
+.register-form-container form input:focus {
+    border: 1px solid var(--border-color);
+}
+.register-form-container form input::placeholder {
+    color: var(--text-color);
+    opacity: 0.3;
+}
+form input[type='password'] {
+    font-weight: 600;
+}
+
+.error {
+    color: red;
+    font-size: 12px;
+}
+
+.hidden {
+    display: none;
+}
