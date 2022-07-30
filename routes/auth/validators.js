@@ -14,7 +14,7 @@ module.exports = {
             const user = await User.findOne({ name });
 
             if (!user) {
-                throw new Error('Name is not valid');
+                throw new Error('Name is invalid'); // fix: not valid -> invalid
             }
 
             return true;
