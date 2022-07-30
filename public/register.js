@@ -20,9 +20,9 @@ document.querySelector('.login-submit').addEventListener('click', async () => {
             'Content-Type': 'application/json',
         }
     );
-    if (res === '/') {
+    if (res.redirect) {
         //incase of redirecting
-        window.location = res;
+        window.location = res.redirect;
         return;
     }
 
@@ -48,9 +48,9 @@ document
             }
         );
 
-        if (res === '/') {
+        if (res.redirect) {
             //incase of redirecting
-            window.location = res;
+            window.location = res.redirect;
             return;
         }
 

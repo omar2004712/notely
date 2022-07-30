@@ -11,13 +11,18 @@ module.exports = {
         await user.save();
 
         req.session.userId = user._id;
-        res.send('/');
+        res.send({
+            redirect: '/',
+        });
     },
     async login(req, res) {
         const user = await User.findOne({ name: req.body.name });
 
         req.session.userId = user._id;
-        res.send('/');
+        // switched to send response in form of objects
+        res.send({
+            redirect: '/',
+        });
     },
     async logout(req, res) {
         req.session = null;
