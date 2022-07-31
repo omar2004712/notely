@@ -1,0 +1,132 @@
+:root {
+    /* in case the --button-color change
+       edith the scroll event listener in home.js
+    */
+    --button-color: rgb(0, 155, 255);
+    --note-color: rgba(0, 155, 255, 0.2);
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Edu NSW ACT Foundation';
+}
+
+.root {
+    display: flex;
+    flex-direction: column;
+}
+
+.top-bar {
+    display: flex;
+    font-size: 30px;
+    width: calc(100vw - 20px);
+    position: fixed;
+    padding: 5px 10px 5px 10px;
+    z-index: 100;
+}
+
+.top-bar h1 {
+    flex: 1;
+}
+
+.top-bar h1 a {
+    text-decoration: none;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: black;
+}
+
+.top-bar button {
+    background-color: transparent;
+    border: none;
+    width: 50px;
+    position: relative;
+}
+
+.top-bar button a {
+    width: 100%;
+    height: fit-content;
+}
+
+.top-bar button a i {
+    font-size: 40px;
+    color: var(--button-color);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.new-note-hover {
+    position: absolute;
+    bottom: -18px;
+    left: 0px;
+    color: black;
+    font-weight: 500;
+    font-size: 13px;
+    opacity: 0;
+    width: fit-content;
+    pointer-events: none;
+    transition: opacity 100ms;
+}
+
+.top-bar button a:hover .new-note-hover {
+    opacity: 1;
+}
+
+.top-bar button a i:active {
+    font-size: 36px;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: rgb(224, 224, 224);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgb(199, 199, 199);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(180, 180, 180);
+}
+
+.notes-container {
+    position: absolute;
+    top: 90px;
+    padding: 2.5vw;
+    display: grid;
+    row-gap: 2.5vw;
+    column-gap: 1.5vw;
+    grid-template-columns: 30vw 30vw 30vw;
+}
+
+.notes-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5vw;
+}
+
+.note {
+    background-color: var(--note-color);
+    font-size: 20px;
+    padding: 2.5vw;
+    border-radius: 1vw;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.note-title {
+    font-weight: 700;
+    font-size: 24px;
+    color: rgb(56, 87, 116);
+}
+
+.note-content {
+    font-weight: 500;
+    color: rgb(80, 114, 132);
+}
