@@ -10,4 +10,6 @@ router.get('/new-note', requireAuth, (req, res) => {
     res.send(newNoteTemplate({}));
 });
 
+router.post('/api/save-note', (req, res) => {});
+
 module.exports = router;

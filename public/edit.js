@@ -6,11 +6,19 @@ function addEditRequest() {
 
     saveButton.addEventListener('click', () => {
         axios
-            .put('/api/edit-note', {
-                title: noteTitle.value,
-                content: noteContent.innerText,
-                _id: newNoteContainer.id,
-            })
+            .put(
+                '/api/edit-note',
+                {
+                    title: noteTitle.value,
+                    content: noteContent.innerText,
+                    _id: newNoteContainer.id,
+                },
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                }
+            )
             .then((res) => {
                 if (res.status === 204) {
                     window.location = '/';
