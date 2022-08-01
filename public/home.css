@@ -6,6 +6,10 @@
     --note-color: rgba(0, 155, 255, 0.2);
 }
 
+body {
+    height: 300vh;
+}
+
 * {
     margin: 0px;
     padding: 0px;

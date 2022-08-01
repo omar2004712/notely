@@ -5,21 +5,16 @@ const { requireAuth } = require('../middlewares');
 const User = mongoose.model('user');
 const router = express.Router();
 
-router.get('/api/notes', requireAuth, (req, res) => {
-    res.send([
-        {
-            title: 'new Note',
-            content: 'this is a new note',
-        },
-        {
-            title: 'new Note',
-            content: 'this is a new note',
-        },
-        {
-            title: 'new Note',
-            content: 'this is a new note',
-        },
-    ]);
+router.post('/api/notes', requireAuth, async (req, res) => {
+    const { index } = req.body;
+
+    const notes = await User.findById(req.session.userId, {
+        notes: { $slice: [index, index + 18] },
+    });
+
+    console.log(notes);
+
+    res.send(notes);
 });
 
 module.exports = router;
