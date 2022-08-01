@@ -1,6 +1,8 @@
 const layout = require('./layout');
 
-module.exports = ({ title, content }) => {
+module.exports = ({ title, content, _id }) => {
+    // added the _id param in case of a delete we send a delete request with
+    // the id of the note
     let message = 'New Note';
     if (title) {
         message = 'Edit Note';
@@ -16,9 +18,10 @@ module.exports = ({ title, content }) => {
             </i>
             ${
                 title
-                    ? `  <i class="fa-solid fa-trash delete-button">
-                <span class="hover-note">delete</span>
-              </i>`
+                    ? `  
+                    <i class="fa-solid fa-trash delete-button">
+                      <span id="${_id}" class="hover-note">delete</span>
+                    </i>`
                     : ''
             }
             <a href="/"><i class="fa-solid fa-backward back-button">
@@ -26,7 +29,7 @@ module.exports = ({ title, content }) => {
             </i></a>
           </header>
           <main>
-            <div class="new-note-container">
+            <div class="new-note-container" id=${_id}>
               <input class="note-title" placeholder="Title" value="${
                   title || ''
               }"/>
@@ -37,7 +40,7 @@ module.exports = ({ title, content }) => {
             </div>
           </main>
         </div>
-        <script src="note.js"></script>
+        <script src="${title ? 'edit.js' : 'save.js'}"></script>
     `,
     });
 };

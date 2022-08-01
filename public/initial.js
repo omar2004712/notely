@@ -17,9 +17,10 @@ axios
 
         const notesColumns = document.querySelectorAll('.notes-column');
 
-        function renderNote({ title, content }) {
+        function renderNote({ title, content, _id }) {
+            // added an id prop for editing on click
             return `
-        <div class="note">
+        <div class="note" id="${_id}">
           <header class="note-title">
             ${title}
           </header>
