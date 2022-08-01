@@ -1,20 +1,3 @@
-function addDeleteRequest() {
-    const deleteButton = document.querySelector('.delete-button');
-
-    if (!deleteButton) {
-        // if there are no delete button -new note- cancel the operation
-        return;
-    }
-
-    deleteButton.addEventListener('click', () => {
-        axios.delete(`/api/delete/${deleteButton.id}`).then((res) => {
-            if (res.status === 202) {
-                window.location = '/';
-            }
-        });
-    });
-}
-
 function addSaveRequest() {
     const saveButton = document.querySelector('.save-button');
     const noteTitle = document.querySelector('.note-title');
@@ -42,5 +25,4 @@ function addSaveRequest() {
     });
 }
 
-addDeleteRequest();
 addSaveRequest();

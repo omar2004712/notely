@@ -8,7 +8,7 @@ module.exports = ({ title, content, _id }) => {
         message = 'Edit Note';
     }
     return layout({
-        title: 'Notely - New',
+        title: title ? 'Notely - Edit' : 'Notely - New',
         content: `
         <div class="root">
           <header class="header">
@@ -30,13 +30,14 @@ module.exports = ({ title, content, _id }) => {
           </header>
           <main>
             <div class="new-note-container" id=${_id}>
-              <input class="note-title" placeholder="Title" value="${
-                  title || ''
-              }"/>
+              <input 
+                class="note-title" 
+                placeholder="Title" value="${title || ''}"/>
               <hr />
               <textarea spellcheck="true" class="note-content" placeholder="Content">${
                   content || ''
-              }</textarea>
+              }
+              </textarea>
             </div>
           </main>
         </div>

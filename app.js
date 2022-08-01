@@ -8,6 +8,7 @@ const authRouter = require('./routes/auth/auth');
 const homeRouter = require('./routes/home/home');
 const noteRouter = require('./routes/notes/note');
 const newNoteRouter = require('./routes/notes/newNote');
+const editNoteRouter = require('./routes/notes/editNote');
 
 const app = express();
 
@@ -30,11 +31,12 @@ app.get('/api', (req, res) => {
     res.send({ hi: 'there' });
 });
 
+app.use(express.static('public'));
+
 app.use(authRouter);
 app.use(homeRouter);
 app.use(noteRouter);
 app.use(newNoteRouter);
-
-app.use(express.static('public'));
+app.use(editNoteRouter);
 
 module.exports = app;

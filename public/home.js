@@ -61,17 +61,19 @@ async function requestNotesOnScroll() {
 
     const notesColumns = document.querySelectorAll('.notes-column');
 
-    function renderNote({ title, content }) {
+    function renderNote({ title, content, _id }) {
         return `
-                            <div class="note">
-                            <header class="note-title">
-                                ${title}
-                            </header>
-                            <main class="content">
-                                ${content}
-                            </main>
-                            </div>
-                        `;
+            <a href="/edit-note?id=${_id}">
+                <div class="note" id="${_id}">
+                    <header class="note-title">
+                        ${title}
+                    </header>
+                    <main class="content">
+                        ${content}
+                    </main>
+                </div>
+            </a>
+        `;
     }
 
     for (let i = 0; i < notes.length; i++) {

@@ -110,6 +110,11 @@
     gap: 1.5vw;
 }
 
+a {
+    text-decoration: none;
+    color: rgb(80, 114, 132);
+}
+
 .note {
     background-color: var(--note-color);
     font-size: 20px;
