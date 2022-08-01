@@ -56,7 +56,9 @@ describe('Notes Api', () => {
                 title: 'Testing Note',
                 content: 'This note is for testing',
             })
-            .end((_, res) => {
+            .end(async (_, res) => {
+                const user = await User.findOne({ name: 'tester' });
+                assert.strictEqual(user.notes[0].title, 'Testing Note');
                 done();
             });
     });
