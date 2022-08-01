@@ -9,7 +9,7 @@ router.post('/api/notes', requireAuth, async (req, res) => {
     const { index } = req.body;
 
     const notes = await User.findById(req.session.userId, {
-        notes: { $slice: [index, 18] },
+        notes: { $slice: [index, 18] }, // start from index 'index' and limit to 18 notes
     });
     res.send(notes);
 });
