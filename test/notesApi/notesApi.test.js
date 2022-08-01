@@ -48,4 +48,16 @@ describe('Notes Api', () => {
                 done();
             });
     });
+
+    it('POST /api/save-note', (done) => {
+        testSession
+            .post('/api/save-note')
+            .send({
+                title: 'Testing Note',
+                content: 'This note is for testing',
+            })
+            .end((_, res) => {
+                done();
+            });
+    });
 });

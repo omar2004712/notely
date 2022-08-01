@@ -12,7 +12,12 @@ router.get('/new-note', requireAuth, (req, res) => {
 
 router.post('/api/save-note', requireAuth, async (req, res) => {
     await User.findByIdAndUpdate(req.session.userId, {
-        $push: { notes: req.body },
+        $push: {
+            notes: {
+                $each: [req.body],
+                $position: 0,
+            },
+        },
     });
     res.status(204).send();
 });
