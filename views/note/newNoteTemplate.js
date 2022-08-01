@@ -19,8 +19,8 @@ module.exports = ({ title, content, _id }) => {
             ${
                 title
                     ? `  
-                    <i class="fa-solid fa-trash delete-button">
-                      <span id="${_id}" class="hover-note">delete</span>
+                    <i class="fa-solid fa-trash delete-button"  id="${_id}">
+                      <span class="hover-note">delete</span>
                     </i>`
                     : ''
             }

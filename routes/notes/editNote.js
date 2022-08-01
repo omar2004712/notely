@@ -27,4 +27,18 @@ router.put('/api/edit-note', requireAuth, async (req, res) => {
     res.status(204).send();
 });
 
+router.delete('/api/delete/:id', requireAuth, async (req, res) => {
+    await User.updateOne(
+        { _id: req.session.userId },
+        {
+            $pull: {
+                notes: {
+                    _id: req.params.id,
+                },
+            },
+        }
+    );
+    res.status(202).send();
+});
+
 module.exports = router;
