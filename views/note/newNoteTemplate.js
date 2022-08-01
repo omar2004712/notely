@@ -11,9 +11,19 @@ module.exports = ({ title, content }) => {
         <div class="root">
           <header class="header">
             <span>${message}</span>
-            <i class="fa-solid fa-floppy-disk save-button"></i>
-            <i class="fa-solid fa-trash delete-button"></i>
-            <a href="/"><i class="fa-solid fa-backward"></i></a>
+            <i class="fa-solid fa-floppy-disk save-button">
+              <span class="hover-note">save</span>
+            </i>
+            ${
+                title
+                    ? `  <i class="fa-solid fa-trash delete-button">
+                <span class="hover-note">delete</span>
+              </i>`
+                    : ''
+            }
+            <a href="/"><i class="fa-solid fa-backward back-button">
+              <span class="hover-note">back</span>
+            </i></a>
           </header>
           <main>
             <div class="new-note-container">
@@ -27,6 +37,7 @@ module.exports = ({ title, content }) => {
             </div>
           </main>
         </div>
+        <script src="note.js"></script>
     `,
     });
 };
