@@ -20,8 +20,9 @@ module.exports = () => {
               <section class="notes-column"></section>
             </main>
           </div>
+          <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
           <script src="home.js"></script>
-
+          <script src="initial.js"></script>
           `,
     });
 };

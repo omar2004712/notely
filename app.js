@@ -6,6 +6,7 @@ const cors = require('cors');
 const User = require('./models/user'); // to create the model before starting the server
 const authRouter = require('./routes/auth/auth');
 const homeRouter = require('./routes/home/home');
+const noteRouter = require('./routes/notes/note');
 
 const app = express();
 
@@ -30,6 +31,7 @@ app.get('/api', (req, res) => {
 
 app.use(authRouter);
 app.use(homeRouter);
+app.use(noteRouter);
 
 app.use(express.static('public'));
 
