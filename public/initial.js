@@ -10,7 +10,7 @@ axios
             },
         }
     )
-    .then(({ data: notes }) => {
+    .then(({ data: { notes } }) => {
         if (notes.length === 0) {
             return;
         }

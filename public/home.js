@@ -36,7 +36,9 @@ async function requestNotesOnScroll() {
         return;
     }
 
-    const notes = await axios.post(
+    const {
+        data: { notes },
+    } = await axios.post(
         '/api/notes',
         {
             index: notesIndex,
