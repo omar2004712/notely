@@ -10,7 +10,7 @@ function addEditRequest() {
                 '/api/edit-note',
                 {
                     title: noteTitle.value,
-                    content: noteContent.innerText,
+                    content: noteContent.value,
                     _id: newNoteContainer.id,
                 },
                 {
@@ -26,3 +26,5 @@ function addEditRequest() {
             });
     });
 }
+
+addEditRequest();

@@ -26,7 +26,7 @@ function addSaveRequest() {
                 '/api/save-note',
                 {
                     title: noteTitle.value,
-                    content: noteContent.innerText,
+                    content: noteContent.value,
                 },
                 {
                     headers: {
@@ -41,3 +41,6 @@ function addSaveRequest() {
             });
     });
 }
+
+addDeleteRequest();
+addSaveRequest();
