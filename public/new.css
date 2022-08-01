@@ -1,0 +1,89 @@
+:root {
+    --button-color: rgb(1, 109, 186);
+    --button-color-hover: rgb(41, 149, 226);
+    --head-color: rgb(0, 98, 168);
+}
+
+* {
+    margin: 0px;
+    font-family: 'Edu NSW ACT Foundation';
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.root {
+    width: 300px;
+    height: 450px;
+    display: grid;
+    grid-template-rows: 60px 1fr;
+    padding: 10px;
+}
+
+.root .header {
+    font-size: 30px;
+    padding: 0px 10px 0px 10px;
+    display: flex;
+    gap: 14px;
+    align-items: center;
+}
+
+.root .header span {
+    font-weight: 600;
+    flex: 1;
+}
+
+.root .header i {
+    font-size: 25px;
+    cursor: pointer;
+    color: var(--button-color);
+}
+
+.root .header i:hover {
+    color: var(--button-color-hover);
+}
+
+.root main .new-note-container {
+    width: 100%;
+    background-color: blue;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    box-shadow: 0px 0px 5px black;
+}
+
+.root main .note-title {
+    width: 100%;
+    height: 50px;
+    padding: 10px;
+    font-size: 24px;
+    font-weight: 600;
+    border: none;
+    outline: none;
+    color: var(--head-color);
+}
+
+.root main .note-title::placeholder {
+    color: var(--head-color);
+    opacity: 0.4;
+}
+
+.root main hr {
+    width: 100%;
+    height: 1px;
+    border: none;
+    background-color: rgb(189, 189, 189);
+}
+
+.root main .note-content {
+    resize: none;
+    width: 100%;
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 10px;
+    font-size: 20px;
+}
