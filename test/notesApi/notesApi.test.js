@@ -28,7 +28,7 @@ describe('Notes Api', () => {
                 confirmPassword: 'password',
                 notes,
             })
-            .end(() => {
+            .end((_, res) => {
                 done();
             });
     });

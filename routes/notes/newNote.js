@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const { requireAuth } = require('../middlewares');
 const newNoteTemplate = require('../../views/note/newNoteTemplate');
 const { requireTitle, requireContent } = require('./validators');
+const { handleErrors } = require('../middlewares');
 
 const User = mongoose.model('user');
 const router = express.Router();
@@ -15,6 +16,7 @@ router.post(
     '/api/save-note',
     requireAuth,
     [requireTitle, requireContent],
+    handleErrors(newNoteTemplate),
     async (req, res) => {
         await User.findByIdAndUpdate(req.session.userId, {
             $push: {

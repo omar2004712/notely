@@ -8,10 +8,9 @@ const {
     requirePasswordR,
     requireConfirmPasswordR,
 } = require('./validators');
-const { handleErrors } = require('./middlewares');
+const { handleErrors } = require('../middlewares');
 const { login, logout, register } = require('../../controllers/auth');
 
-const User = mongoose.model('user');
 const router = express.Router();
 
 router.get('/register', (_, res) => {
