@@ -25,9 +25,9 @@ axios
                 <header class="note-title">
                     ${title}
                 </header>
-                <main class="content">
+                <p class="content">
                     ${content}
-                </main>
+                </p>
                 </div>
             </a>
       `;

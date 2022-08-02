@@ -136,3 +136,7 @@ a {
     font-weight: 500;
     color: rgb(80, 114, 132);
 }
+
+.content {
+    word-wrap: break-word;
+}
