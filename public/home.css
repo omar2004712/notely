@@ -53,11 +53,12 @@
     color: var(--button-color);
     border-radius: 50%;
     cursor: pointer;
+    position: relative;
 }
 
 .new-note-hover {
     position: absolute;
-    bottom: -18px;
+    bottom: -15px;
     left: 0px;
     color: black;
     font-weight: 500;
