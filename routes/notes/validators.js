@@ -9,5 +9,5 @@ module.exports = {
     requireContent: check('content')
         .trim()
         .isLength({ min: 1 })
-        .withMessage('Content is require'),
+        .withMessage('Content is required'), // spell mistake
 };
