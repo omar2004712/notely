@@ -37,8 +37,7 @@ module.exports = ({ title, content, _id }) => {
               <hr />
               <textarea spellcheck="true" class="note-content" placeholder="Content">${
                   content || ''
-              }
-              </textarea>
+              }</textarea>
               <label class="error content-error"></label>
             </div>
           </main>
