@@ -31,6 +31,6 @@ router.post(
     register
 );
 
-router.get('api/logout', logout);
+router.get('/api/logout', logout);
 
 module.exports = router;
