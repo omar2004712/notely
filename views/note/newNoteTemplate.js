@@ -33,11 +33,13 @@ module.exports = ({ title, content, _id }) => {
               <input 
                 class="note-title" 
                 placeholder="Title" value="${title || ''}"/>
+              <label class="error title-error"></label>
               <hr />
               <textarea spellcheck="true" class="note-content" placeholder="Content">${
                   content || ''
               }
               </textarea>
+              <label class="error content-error"></label>
             </div>
           </main>
         </div>

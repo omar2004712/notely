@@ -21,6 +21,11 @@ function addSaveRequest() {
                 if (res.status === 204) {
                     window.location = '/';
                 }
+
+                for (let error in res.data) {
+                    document.querySelector(`.${error}-error`).innerText =
+                        res.data[error].msg;
+                }
             });
     });
 }
