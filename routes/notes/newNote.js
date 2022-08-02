@@ -4,6 +4,7 @@ const { requireAuth } = require('../middlewares');
 const newNoteTemplate = require('../../views/note/newNoteTemplate');
 const { requireTitle, requireContent } = require('./validators');
 const { handleErrors } = require('../middlewares');
+const { newNote } = require('../../controllers/note');
 
 const User = mongoose.model('user');
 const router = express.Router();
@@ -17,17 +18,7 @@ router.post(
     requireAuth,
     [requireTitle, requireContent],
     handleErrors(newNoteTemplate),
-    async (req, res) => {
-        await User.findByIdAndUpdate(req.session.userId, {
-            $push: {
-                notes: {
-                    $each: [req.body],
-                    $position: 0,
-                },
-            },
-        });
-        res.status(204).send();
-    }
+    newNote
 );
 
 module.exports = router;
