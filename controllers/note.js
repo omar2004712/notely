@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const editNoteTemplate = require('../views/note/newNoteTemplate');
 
 const User = mongoose.model('user');
 
