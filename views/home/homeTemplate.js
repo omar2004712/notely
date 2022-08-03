@@ -13,6 +13,12 @@ module.exports = () => {
                   <span class="new-note-hover">New Note</span>
                 </a>
               </button>
+              <button>
+                <a href="/api/logout">
+                <i class="fa-solid fa-right-from-bracket new-note-button"></i>
+                <span class="new-note-hover">Log out</span>
+                </a>
+              </button>
             </header>
             <main class="notes-container">
               <section class="notes-column"></section>
