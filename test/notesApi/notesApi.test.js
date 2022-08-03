@@ -62,4 +62,71 @@ describe('Notes Api', () => {
                 done();
             });
     });
+
+    it('POST /api/save-note passing empty title', (done) => {
+        testSession
+            .post('/api/save-note')
+            .send({
+                title: '',
+                content: '',
+            })
+            .end((_, { body }) => {
+                assert.strictEqual(body.title.msg, 'Title is required');
+                assert.strictEqual(body.content.msg, 'Content is required');
+                done();
+            });
+    });
+
+    it('PUT /api/edit-note', (done) => {
+        User.findOne({ name: 'tester' }).then((tester) => {
+            testSession
+                .put(`/api/edit-note`)
+                .send({
+                    _id: tester.notes[0]._id,
+                    title: 'new title',
+                    content: 'new content',
+                })
+                .end((_, res) => {
+                    User.findById(tester._id).then((t) => {
+                        assert.strictEqual(t.notes[0].title, 'new title');
+                        assert.strictEqual(t.notes[0].content, 'new content');
+                        done();
+                    });
+                });
+        });
+    });
+
+    it('PUT /api/edit-note empty title and content', (done) => {
+        User.findOne({ name: 'tester' }).then((tester) => {
+            testSession
+                .put('/api/edit-note')
+                .send({ title: '', content: '', _id: tester.notes[0]._id })
+                .end((_, { body }) => {
+                    assert.strictEqual(body.title.msg, 'Title is required');
+                    assert.strictEqual(body.content.msg, 'Content is required');
+                    done();
+                });
+        });
+    });
+
+    it('DELETE /api/delete/:id', (done) => {
+        User.findOne({ name: 'tester' }).then((tester) => {
+            testSession
+                .delete(`/api/delete/${tester.notes[0]._id}`)
+                .end((_, res) => {
+                    User.findById(tester._id).then((t) => {
+                        assert.strictEqual(res.status, 202);
+                        assert.strictEqual(
+                            t._id.toString(),
+                            tester._id.toString()
+                        );
+                        assert.strictEqual(
+                            t.notes[0]._id.toString(),
+                            tester.notes[1]._id.toString()
+                        );
+                        done();
+                    });
+                });
+        });
+    });
 });
