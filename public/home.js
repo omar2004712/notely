@@ -69,7 +69,7 @@ async function requestNotesOnScroll() {
                         ${title}
                     </header>
                     <p class="content">
-                        ${content}
+                        ${content.replace(/\n/g, '<br />')}
                     </p>
                 </div>
             </a>

@@ -130,6 +130,7 @@ a {
     font-weight: 700;
     font-size: 24px;
     color: rgb(56, 87, 116);
+    word-wrap: break-word;
 }
 
 .note-content {
