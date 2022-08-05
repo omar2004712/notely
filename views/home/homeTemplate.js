@@ -48,6 +48,14 @@ module.exports = () => {
               document.querySelector("header").style.boxShadow =
                 "0 0 10px rgba(0, 0, 0, 0.3)";
             });
+            document.addEventListener('click', (event) => {
+              const dropdown = document.querySelector('.dropdown')
+              if(event.target === dropdown || event.target === document.querySelector('.options-icon')) {
+                return;
+              }
+
+              dropdown.classList.add('hidden')
+            })
           </script>
           <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
           <script src="home.js"></script>

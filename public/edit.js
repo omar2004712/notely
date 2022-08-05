@@ -36,8 +36,6 @@ function addEditRequest() {
                     window.location = '/';
                 }
 
-                console.log(res.data);
-
                 for (let error in res.data) {
                     document.querySelector(`.${error}-error`).innerText =
                         res.data[error].msg;

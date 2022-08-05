@@ -8,6 +8,7 @@ body {
     display: grid;
     grid-template-rows: 60px 1fr;
     row-gap: 30px;
+    overflow-x: hidden;
 }
 
 ::-webkit-scrollbar {
@@ -62,9 +63,9 @@ body {
     transition: box-shadow 200ms;
 }
 
-.top-bar button .options-icon:hover {
+/* .top-bar button .options-icon:hover {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-}
+} */
 
 .dropdown {
     background-color: white;
@@ -116,15 +117,15 @@ a {
 
 .notes-container {
     display: grid;
-    padding: 1vw;
-    grid-template-columns: repeat(3, 31vw);
-    column-gap: 1vw;
+    padding: 8px;
+    grid-template-columns: repeat(3, calc((100% - 32px) / 3));
+    column-gap: 8px;
 }
 
 .notes-column {
     display: flex;
     flex-direction: column;
-    gap: 1vw;
+    gap: 8px;
 }
 
 .note {
