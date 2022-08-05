@@ -15,51 +15,6 @@ module.exports = ({ title, content }) => {
           href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;500&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
           rel="stylesheet"
         />
-        <title>Document</title>
-        <style>
-          /* * {
-            margin: 0px;
-          }
-          .input-field {
-            display: inline-block;
-            width: 300px;
-            position: relative;
-            top: 10px;
-            left: 10px;
-            display: grid;
-            grid-template-rows: fit-content 1px;
-          }
-          .input-text {
-            padding: 5px;
-            width: calc(100% - 5px * 2);
-            border: none;
-            outline: none;
-          }
-          .input-field .focus-underline,
-          .underline {
-            width: 100%;
-            border: none;
-            height: 1px;
-            position: relative;
-          }
-    
-          .underline {
-            background-color: rgba(0, 0, 0, 0.1);
-            top: -1px;
-          }
-    
-          .input-field .focus-underline {
-            background-color: black;
-            transform-origin: left;
-            transform: scaleX(0);
-            transition: transform 300ms;
-            z-index: 100;
-          }
-    
-          .input-text:focus + hr {
-            transform: scaleX(1);
-          } */
-        </style>
         <script
           src="https://kit.fontawesome.com/7ecb8aa263.js"
           crossorigin="anonymous"

@@ -20,16 +20,19 @@ axios
         function renderNote({ title, content, _id }) {
             // added an id prop for editing on click
             return `
-            <a href="/edit-note?id=${_id}">
-                <div class="note" id="${_id}">
-                <header class="note-title">
-                    ${title}
-                </header>
-                <p class="content">
-                    ${content.replace(/\n/g, '<br />')}
-                </p>
+            <div class="note" id="${_id}">
+                <div class="note-head">
+                    <h2 class="note-title">
+                        ${title}
+                    </h2>
+                    <a href="/edit-note?id=${_id}">
+                    <i class="fa-solid fa-pen edit-button"></i>
+                    </a>
                 </div>
-            </a>
+                <div class="content">
+                    ${content.replace(/\n/g, '<br />')}
+                </div>
+            </div>
       `;
         }
 
