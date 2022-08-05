@@ -1,131 +1,206 @@
-:root {
-    --button-color: rgb(1, 109, 186);
-    --button-color-hover: rgb(41, 149, 226);
-    --head-color: rgb(0, 98, 168);
-    --text-color: rgb(50, 150, 200);
-}
-
 * {
     margin: 0px;
-    font-family: 'Edu NSW ACT Foundation';
 }
 
 body {
+    height: 100vh;
+    width: 100vw;
     display: flex;
+    align-items: center;
     justify-content: center;
-    align-items: center;
 }
 
-.root {
-    width: 300px;
-    height: 450px;
-    display: grid;
-    grid-template-rows: 60px 1fr;
-    padding: 10px;
-}
-
-.root .header {
-    font-size: 30px;
-    padding: 0px 10px 0px 10px;
-    display: flex;
-    gap: 14px;
-    align-items: center;
-}
-
-.root .header span {
-    font-weight: 600;
-    flex: 1;
-}
-
-.root .header i {
-    position: relative;
-    font-size: 25px;
-    cursor: pointer;
-    color: var(--button-color);
-}
-
-.hover-note {
-    position: absolute;
-    bottom: -32px;
-    left: -12px;
-    background-color: rgb(247, 247, 247);
-    padding: 4px;
-    border-radius: 2px;
-    font-size: 20px;
-    opacity: 0;
-    transition: opacity 100ms;
-    pointer-events: none;
-    border: 1px solid var(--button-color);
-}
-
-.root .header i:hover {
-    color: var(--button-color-hover);
-}
-
-.save-button:hover .hover-note {
-    opacity: 1;
-}
-
-.delete-button:hover .hover-note {
-    opacity: 1;
-}
-
-.back-button .hover-note {
-    left: -5px;
-}
-
-.back-button:hover .hover-note {
-    opacity: 1;
-}
-
-.root main .new-note-container {
-    width: 100%;
+.new-note {
     display: flex;
     flex-direction: column;
-    height: 100%;
-    box-shadow: 0px 0px 5px rgb(151, 151, 151);
-}
-
-.root main .note-title {
-    width: 100%;
-    height: 50px;
+    height: 80%;
+    max-height: 500px;
+    background-color: rgb(240, 240, 240);
     padding: 10px;
-    font-size: 24px;
-    font-weight: 600;
-    border: none;
-    outline: none;
-    color: var(--head-color);
+    width: 90%;
+    max-width: 700px;
+    gap: 12px;
+    border-radius: 5px;
+    border: 2px solid rgb(115, 115, 115);
 }
 
-.root main .note-title::placeholder {
-    color: var(--head-color);
-    opacity: 0.4;
+.new-note header {
+    display: flex;
+    gap: 26px;
+    align-items: center;
 }
 
-.root main hr {
-    width: 100%;
-    height: 1px;
-    border: none;
-    background-color: rgb(189, 189, 189);
-}
-
-.root main .note-content {
-    resize: none;
-    width: 100%;
+.new-note header h1 {
+    font-family: 'Roboto Slab';
+    font-weight: 500;
     flex: 1;
-    border: none;
-    outline: none;
-    padding: 10px;
-    font-size: 20px;
-    color: var(--text-color);
 }
 
-.root main .note-content::placeholder {
-    color: var(--text-color);
+.new-note header button {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    border: none;
+    height: fit-content;
+    width: fit-content;
+    padding: 2px;
+    background-color: transparent;
+    opacity: 0;
+    transition: opacity 100ms, color 100ms;
+}
+
+.new-note header button i {
+    font-size: 28px;
+    cursor: pointer;
+}
+
+.new-note:hover header button {
+    opacity: 1;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.new-note header button i:hover {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.new-note header button .hover-note {
+    font-family: 'Roboto Slab';
+    opacity: 0;
+    font-size: 8px;
+    position: absolute;
+    bottom: -8px;
+}
+
+.new-note header button i:hover + label {
+    opacity: 1;
+}
+
+.new-note main {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    height: 80%;
+    max-height: 600px;
+}
+
+.new-note main label .title-input,
+.new-note main .content-input {
+    border: none;
+    padding: 0px;
+    outline: none;
+    font-family: 'Roboto Slab';
+}
+
+.new-note main label {
+    width: 100%;
+    display: grid;
+    grid-template-rows: fit-content 1px;
+    position: relative;
+}
+
+.new-note main label .title-input {
+    width: calc(100% - 10px);
+    font-size: 24px;
+    padding: 5px;
+    background-color: transparent;
+    font-weight: 500;
+}
+
+.new-note main label .title-input::placeholder,
+.new-note main .content-input::placeholder {
     opacity: 0.4;
 }
 
-.error {
-    padding: 0px 0px 5px 10px;
-    color: red;
+.new-note main label hr {
+    border: none;
+    height: 2px;
+    padding: 0px 2px 0px 2px;
+    border-radius: 1px;
+}
+
+.new-note main label .focus-underline {
+    background-color: rgba(0, 0, 0, 0.5);
+    transform-origin: left;
+    transform: scaleX(0);
+    transition: transform 300ms;
+}
+
+.new-note main label .title-input:focus + hr {
+    transform: scaleX(1);
+}
+
+.new-note main label .underline {
+    background-color: rgba(0, 0, 0, 0.1);
+    position: relative;
+    top: -2px;
+}
+
+.new-note main .content-input {
+    resize: none;
+    height: 208px;
+    padding: 5px;
+    background-color: transparent;
+    color: rgba(0, 0, 0, 0.7);
+    font-weight: 400;
+    font-size: 20px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.new-note header button .close {
+    font-size: 36px;
+}
+
+.new-note header button .delete-button {
+    font-size: 24px;
+}
+
+@media only screen and (max-width: 600px) {
+    body {
+        align-items: flex-start;
+        width: 100vw;
+        overflow-x: hidden;
+        overflow-y: hidden;
+    }
+    body .new-note {
+        height: 400px;
+        background-color: transparent;
+        border: none;
+        width: 90%;
+        max-width: none;
+        gap: 32px;
+        height: calc(100% - 20px);
+    }
+
+    .new-note header {
+        font-size: 20px;
+        gap: 26px;
+    }
+
+    .new-note header i {
+        opacity: 1;
+    }
+
+    .new-note header button .close {
+        font-size: 36px;
+    }
+
+    .new-note header button {
+        opacity: 0.5;
+    }
+
+    .new-note main label .focus-underline {
+        background-color: rgba(0, 0, 0, 1);
+    }
+
+    .new-note main label .title-input {
+        font-size: 24px;
+    }
+
+    .new-note main .content-input {
+        font-size: 20px;
+        flex: 1;
+    }
 }

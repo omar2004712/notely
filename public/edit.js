@@ -13,8 +13,8 @@ function addDeleteRequest() {
 function addEditRequest() {
     const newNoteContainer = document.querySelector('.new-note-container');
     const saveButton = document.querySelector('.save-button');
-    const noteTitle = document.querySelector('.note-title');
-    const noteContent = document.querySelector('.note-content');
+    const noteTitle = document.querySelector('.title-input');
+    const noteContent = document.querySelector('.content-input');
 
     saveButton.addEventListener('click', () => {
         axios
