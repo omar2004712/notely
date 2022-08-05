@@ -78,11 +78,13 @@ module.exports = ({ title, content, _id }) => {
               <hr class="focus-underline" />
               <hr class="underline" />
             </label>
+            <label class="error title-error"></label>
             <textarea
               class="content-input"
               required
               placeholder="Content"
             >${content || ''}</textarea>
+            <label class="error content-error"></label>
           </main>
         </div>
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
