@@ -10,12 +10,29 @@ body {
     justify-content: center;
 }
 
+::-webkit-scrollbar {
+    width: 8px;
+    background-color: transparent;
+    border-radius: 4px;
+    transition: background-color 100ms;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgb(197, 197, 197);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+::-webkit-scrollbar-thumb:active {
+    background-color: rgb(150, 150, 150);
+}
+
 .new-note {
     display: flex;
     flex-direction: column;
     height: 80%;
     max-height: 500px;
-    background-color: rgb(240, 240, 240);
+    background-color: rgba(84, 155, 205, 0.569);
     padding: 10px;
     width: 90%;
     max-width: 700px;
