@@ -1,30 +1,29 @@
 :root {
-    --border-color: rgb(0, 153, 255);
-    --head-color: rgb(0, 98, 168);
-    --text-color: rgb(0, 126, 210);
+    --theme-color: rgb(119, 151, 175);
 }
 * {
     margin: 0px;
-    font-family: 'Roboto Mono';
-    font-weight: 500;
+    font-family: 'Roboto slab';
+    font-weight: 400;
 }
 body {
+    height: 100vh;
     width: 100vw;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 }
 .root {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 50px;
+    gap: 30px;
+    height: fit-content;
 }
 h1 {
     font-size: 60px;
-    color: var(--head-color);
-    font-weight: 600;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: var(--theme-color);
+    font-weight: 500;
 }
 .forms {
     display: flex;
@@ -32,11 +31,12 @@ h1 {
 }
 .register,
 .login {
-    height: 380px;
-    width: 350px;
+    width: 90vw;
+    height: 420px;
+    max-width: 350px;
     background-color: rgb(255, 255, 255);
     border-radius: 4px;
-    border: 2px var(--border-color) dashed;
+    border: 2px var(--theme-color) dashed;
     margin-right: 3px;
 }
 .register-sign {
@@ -46,12 +46,12 @@ h1 {
 .main-sign,
 .sub-sign {
     width: 50%;
-    height: 50px;
+    height: 70px;
     display: grid;
     place-items: center;
     font-size: 24px;
-    font-weight: bold;
-    color: var(--head-color);
+    font-weight: 500;
+    color: var(--theme-color);
 }
 
 .main-sign {
@@ -65,7 +65,7 @@ h1 {
 
 .register-form-container {
     width: 100%;
-    height: calc(100% - 50px);
+    height: calc(100% - 70px);
     display: grid;
     place-items: center;
     grid-template-rows: 1fr 60px;
@@ -87,11 +87,12 @@ h1 {
     border-radius: 3px;
 }
 .register-form-container button {
+    font-size: 24px;
     width: 90%;
-    background-color: var(--text-color);
+    background-color: var(--theme-color);
     color: white;
     cursor: pointer;
-    font-weight: 600;
+    font-weight: 500;
 }
 .register-form-container button:hover {
     opacity: 0.8;
@@ -100,17 +101,14 @@ h1 {
     font-size: 18px;
 }
 .register-form-container form input {
-    color: var(--text-color);
+    color: var(--theme-color);
 }
 .register-form-container form input:focus {
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--theme-color);
 }
 .register-form-container form input::placeholder {
-    color: var(--text-color);
+    color: var(--theme-color);
     opacity: 0.3;
-}
-form input[type='password'] {
-    font-weight: 600;
 }
 
 .error {
@@ -120,4 +118,39 @@ form input[type='password'] {
 
 .hidden {
     display: none;
+}
+
+@media only screen and (max-width: 500px) {
+    .root {
+        gap: 10px;
+    }
+
+    .register,
+    .login {
+        height: 350px;
+    }
+
+    .register-form-container form input,
+    .register-form-container button {
+        font-size: 16px;
+        height: 40px;
+    }
+
+    .register-form-container button:active {
+        font-size: 14px;
+    }
+
+    .main-sign,
+    .sub-sign {
+        font-size: 20px;
+        height: 50px;
+    }
+
+    .register-form-container {
+        height: calc(100% - 50px);
+    }
+
+    h1 {
+        font-size: 40px;
+    }
 }
