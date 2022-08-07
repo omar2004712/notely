@@ -1,0 +1,124 @@
+:root {
+    --text-color: rgb(78, 117, 147);
+}
+* {
+    margin: 0px;
+    font-family: 'Roboto Slab';
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.close-container {
+    height: 20px;
+}
+
+.search-box .close {
+    position: absolute;
+    right: 20px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.search-box .close:hover {
+    color: gray;
+}
+
+.search-box {
+    width: 85%;
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 12px;
+    border-radius: 16px;
+    background-color: white;
+    box-shadow: 0px 0px 8px gray;
+    position: fixed;
+    top: 15%;
+    left: calc(50% - 150px);
+}
+
+.search-input-container {
+    display: flex;
+    align-items: center;
+    background-color: rgb(215, 238, 255);
+    border-radius: 20px;
+    transition: box-shadow 100ms;
+    padding: 8px 12px 8px 12px;
+}
+
+.search-input-container:focus-within {
+    box-shadow: 0 0 4px gray;
+}
+
+.search-input {
+    background-color: transparent;
+    flex: 1;
+    color: rgb(78, 117, 147);
+    font-size: 20px;
+    border: none;
+    outline: none;
+    width: calc(100% - 20px);
+}
+
+.search-button {
+    width: 20px;
+    font-size: 20px;
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+.dropdown {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    max-height: 250px;
+    overflow: auto;
+    border-radius: 18px;
+    padding: 4px;
+    min-height: 40px;
+}
+
+.scrollbar-hidden::-webkit-scrollbar {
+    display: none;
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: baseline;
+    font-size: 20px;
+    background-color: rgb(179, 221, 254);
+    padding: 16px;
+    border-radius: 18px;
+    transition: background-color 50ms;
+}
+
+.dropdown-item:hover {
+    background-color: rgb(165, 201, 227);
+}
+
+.dropdown-item span {
+    flex: 1;
+    color: var(--text-color);
+}
+
+.dropdown-item .add-editor {
+    cursor: pointer;
+    color: var(--text-color);
+}
+
+.not-found-msg {
+    color: gray;
+    font-weight: 500;
+    font-size: 16px;
+    text-align: center;
+}
+
+.hidden {
+    display: none;
+}

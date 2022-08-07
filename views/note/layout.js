@@ -8,6 +8,7 @@ module.exports = ({ title, content }) => `
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="icon" href="images/webIcon.png" />
         <link rel="stylesheet" href="new.css" />
+        <link rel="stylesheet" href="addEditor.css" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -21,6 +22,7 @@ module.exports = ({ title, content }) => `
       </head>
       <body>
         ${content}
+        <script src="addEditor.js"></script>
       </body>
     </html>
     

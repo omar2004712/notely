@@ -63,6 +63,7 @@ module.exports = ({ title, content, _id }) => {
         </div>
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
         <script src="${title ? 'edit.js' : 'save.js'}"></script>
+        <script src="addSearchBox.js" /></script>
         `,
     });
 };
