@@ -3,32 +3,68 @@ const request = require('supertest');
 const session = require('supertest-session');
 const assert = require('assert');
 const app = require('../../app');
+const { hashPassword } = require('../../controllers/helpers');
 
 const User = mongoose.model('user');
+const Note = mongoose.model('note');
 
 describe('Notes Api', () => {
     let testSession;
 
-    beforeEach((done) => {
-        testSession = session(app);
-        const notes = [];
+    beforeEach(async () => {
+        // testSession = session(app);
+        // const notes = [];
+
+        // for (let i = 1; i < 40; i++) {
+        //     notes.push({
+        //         title: `Note ${i}`,
+        //         content: `This is the ${i}th note Welcome`,
+        //     });
+        // }
+
+        // testSession
+        //     .post('/api/register')
+        //     .send({
+        //         name: 'tester',
+        //         password: 'password',
+        //         confirmPassword: 'password',
+        //         notes,
+        //     })
+        //     .end((_, res) => {
+        //         done();
+        //     });
+
+        const user = new User({
+            name: 'tester',
+            password: await hashPassword('password'),
+            notes: [],
+        });
 
         for (let i = 1; i < 40; i++) {
-            notes.push({
+            const note = new Note({
                 title: `Note ${i}`,
                 content: `This is the ${i}th note Welcome`,
+                creatorId: user._id,
             });
+
+            user.notes.push(note);
+
+            await note.save();
         }
 
+        await user.save();
+    });
+
+    beforeEach((done) => {
+        testSession = session(app);
+
         testSession
-            .post('/api/register')
+            .post('/api/login')
             .send({
                 name: 'tester',
                 password: 'password',
-                confirmPassword: 'password',
-                notes,
             })
-            .end((_, res) => {
+            .end(() => {
                 done();
             });
     });

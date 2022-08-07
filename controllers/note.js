@@ -10,7 +10,8 @@ module.exports = {
 
         const notes = await User.findById(req.session.userId, {
             notes: { $slice: [index, pageSize] },
-        });
+        }).populate('notes');
+
         res.send(notes);
     },
 
