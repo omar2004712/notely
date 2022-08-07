@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const editNoteTemplate = require('../views/note/newNoteTemplate');
 
 const User = mongoose.model('user');
+const Note = mongoose.model('note');
 
 module.exports = {
     async feedNotes(req, res) {
@@ -16,16 +17,36 @@ module.exports = {
     },
 
     async newNote(req, res) {
+        // const { title, content } = req.body;
+
+        // await User.findByIdAndUpdate(req.session.userId, {
+        //     $push: {
+        //         notes: {
+        //             $each: [{ title, content }], // to only save the title and content
+        //             $position: 0,
+        //         },
+        //     },
+        // });
         const { title, content } = req.body;
+
+        const note = new Note({
+            title,
+            content,
+            creator: req.session.userId,
+            editors: [],
+        });
+
+        await note.save();
 
         await User.findByIdAndUpdate(req.session.userId, {
             $push: {
                 notes: {
-                    $each: [{ title, content }], // to only save the title and content
+                    $each: [note._id],
                     $position: 0,
                 },
             },
         });
+
         res.status(204).send();
     },
 

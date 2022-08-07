@@ -93,7 +93,9 @@ describe('Notes Api', () => {
                 content: 'This note is for testing',
             })
             .end(async (_, res) => {
-                const user = await User.findOne({ name: 'tester' });
+                const user = await User.findOne({ name: 'tester' }).populate(
+                    'notes'
+                );
                 assert.strictEqual(user.notes[0].title, 'Testing Note');
                 done();
             });
