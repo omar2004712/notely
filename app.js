@@ -4,6 +4,7 @@ const cookieSession = require('cookie-session');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 require('./models/user'); // to create the model before starting the server
+require('./models/note'); // to create the model before starting the server
 const authRouter = require('./routes/auth/auth');
 const homeRouter = require('./routes/home/home');
 const noteRouter = require('./routes/notes/note');

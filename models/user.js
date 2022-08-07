@@ -1,11 +1,6 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
-const NoteSchema = new Schema({
-    title: String,
-    content: String,
-});
-
 const UserSchema = new Schema({
     // deleted the email field
     name: String,
@@ -17,7 +12,12 @@ const UserSchema = new Schema({
             message: 'Password must be longer than 8 characters',
         },
     },
-    notes: [NoteSchema],
+    notes: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'note',
+        },
+    ],
 });
 
 const User = mongoose.model('user', UserSchema);
