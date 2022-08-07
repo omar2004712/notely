@@ -57,6 +57,7 @@ module.exports = {
     },
 
     async deleteNote(req, res) {
+        await Note.findByIdAndDelete(req.params.id);
         await User.updateOne(
             { _id: req.session.userId },
             {

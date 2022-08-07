@@ -157,18 +157,20 @@ describe('Notes Api', () => {
             testSession
                 .delete(`/api/delete/${tester.notes[0]._id}`)
                 .end((_, res) => {
-                    User.findById(tester._id).then((t) => {
-                        assert.strictEqual(res.status, 202);
-                        assert.strictEqual(
-                            t._id.toString(),
-                            tester._id.toString()
-                        );
-                        assert.strictEqual(
-                            t.notes[0]._id.toString(),
-                            tester.notes[1]._id.toString()
-                        );
-                        done();
-                    });
+                    User.findById(tester._id)
+                        .populate('notes')
+                        .then((t) => {
+                            assert.strictEqual(res.status, 202);
+                            assert.strictEqual(
+                                t._id.toString(),
+                                tester._id.toString()
+                            );
+                            assert.strictEqual(
+                                t.notes[0]._id.toString(),
+                                tester.notes[1]._id.toString()
+                            );
+                            done();
+                        });
                 });
         });
     });

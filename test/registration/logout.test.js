@@ -7,15 +7,6 @@ describe('Logs out from the website', () => {
 
     beforeEach((done) => {
         testSession = session(app);
-        const notes = [];
-
-        // eslint-disable-next-line no-plusplus
-        for (let i = 1; i < 40; i++) {
-            notes.push({
-                title: `Note ${i}`,
-                content: `This is the ${i}th note Welcome`,
-            });
-        }
 
         testSession
             .post('/api/register')
@@ -23,7 +14,6 @@ describe('Logs out from the website', () => {
                 name: 'tester',
                 password: 'password',
                 confirmPassword: 'password',
-                notes,
             })
             .end(() => {
                 done();
