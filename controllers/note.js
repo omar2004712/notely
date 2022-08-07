@@ -17,16 +17,6 @@ module.exports = {
     },
 
     async newNote(req, res) {
-        // const { title, content } = req.body;
-
-        // await User.findByIdAndUpdate(req.session.userId, {
-        //     $push: {
-        //         notes: {
-        //             $each: [{ title, content }], // to only save the title and content
-        //             $position: 0,
-        //         },
-        //     },
-        // });
         const { title, content } = req.body;
 
         const note = new Note({
@@ -58,16 +48,10 @@ module.exports = {
     },
 
     async update(req, res) {
-        await User.updateOne(
-            // eslint-disable-next-line no-underscore-dangle
-            { _id: req.session.userId, 'notes._id': req.body._id },
-            {
-                $set: {
-                    'notes.$.title': req.body.title,
-                    'notes.$.content': req.body.content,
-                },
-            }
-        );
+        await Note.findByIdAndUpdate(req.body._id, {
+            title: req.body.title,
+            content: req.body.content,
+        });
 
         res.status(204).send();
     },

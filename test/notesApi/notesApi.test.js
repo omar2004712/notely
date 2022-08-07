@@ -125,11 +125,16 @@ describe('Notes Api', () => {
                     content: 'new content',
                 })
                 .end((_, res) => {
-                    User.findById(tester._id).then((t) => {
-                        assert.strictEqual(t.notes[0].title, 'new title');
-                        assert.strictEqual(t.notes[0].content, 'new content');
-                        done();
-                    });
+                    User.findById(tester._id)
+                        .populate('notes')
+                        .then((t) => {
+                            assert.strictEqual(t.notes[0].title, 'new title');
+                            assert.strictEqual(
+                                t.notes[0].content,
+                                'new content'
+                            );
+                            done();
+                        });
                 });
         });
     });
