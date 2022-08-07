@@ -3,7 +3,7 @@ const express = require('express');
 const cookieSession = require('cookie-session');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const User = require('./models/user'); // to create the model before starting the server
+require('./models/user'); // to create the model before starting the server
 const authRouter = require('./routes/auth/auth');
 const homeRouter = require('./routes/home/home');
 const noteRouter = require('./routes/notes/note');
@@ -16,7 +16,7 @@ if (process.env.NODE_ENV !== 'test') {
     mongoose.connect('mongodb://localhost/notely');
 }
 
-app.use(cors()); // to enable requests from the test env
+// app.use(cors()); // to enable requests from the test env
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));

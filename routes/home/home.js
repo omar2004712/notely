@@ -1,6 +1,6 @@
 const express = require('express');
 const homeTemplate = require('../../views/home/homeTemplate');
-const { requireAuth } = require('../middlewares');
+const { requireAuth } = require('../middleware');
 
 const router = express.Router();
 

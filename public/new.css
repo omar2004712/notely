@@ -18,7 +18,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: rgb(197, 197, 197);
+    background-color: rgb(176, 176, 176);
     border-radius: 4px;
     cursor: pointer;
 }

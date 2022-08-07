@@ -6,18 +6,21 @@ const User = mongoose.model('user');
 module.exports = {
     async feedNotes(req, res) {
         const { index } = req.body;
+        const pageSize = 18;
 
         const notes = await User.findById(req.session.userId, {
-            notes: { $slice: [index, 18] }, // start from index 'index' and limit to 18 notes
+            notes: { $slice: [index, pageSize] },
         });
         res.send(notes);
     },
 
     async newNote(req, res) {
+        const { title, content } = req.body;
+
         await User.findByIdAndUpdate(req.session.userId, {
             $push: {
                 notes: {
-                    $each: [req.body],
+                    $each: [{ title, content }], // to only save the title and content
                     $position: 0,
                 },
             },
@@ -34,6 +37,7 @@ module.exports = {
 
     async update(req, res) {
         await User.updateOne(
+            // eslint-disable-next-line no-underscore-dangle
             { _id: req.session.userId, 'notes._id': req.body._id },
             {
                 $set: {

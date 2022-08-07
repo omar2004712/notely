@@ -1,7 +1,7 @@
 const layout = require('./layout');
 
-module.exports = () => {
-    return layout({
+module.exports = () =>
+    layout({
         title: 'Notely',
         content: `
           <header class="top-bar">
@@ -62,4 +62,3 @@ module.exports = () => {
           <script src="initial.js"></script>
           `,
     });
-};

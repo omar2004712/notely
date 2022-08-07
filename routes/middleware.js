@@ -8,7 +8,7 @@ module.exports = {
 
         next();
     },
-    handleErrors(templateFunc) {
+    handleErrors() {
         // move from auth dir to route dir to be accessible by all routes
         return (req, res, next) => {
             const errors = validationResult(req);

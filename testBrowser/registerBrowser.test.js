@@ -3,8 +3,7 @@ describe('Browser test', () => {
         const registerForm = document.querySelector('.register');
         const loginForm = document.querySelector('.login');
 
-        const [loginSubSign, registerSubSign] =
-            document.querySelectorAll('.sub-sign');
+        const [loginSubSign] = document.querySelectorAll('.sub-sign');
 
         loginSubSign.dispatchEvent(new Event('click'));
         assert(!Array.from(loginForm.classList).includes('hidden'));

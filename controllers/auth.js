@@ -10,6 +10,7 @@ module.exports = {
 
         await user.save();
 
+        // eslint-disable-next-line no-underscore-dangle
         req.session.userId = user._id;
         res.send({
             redirect: '/',
@@ -18,6 +19,7 @@ module.exports = {
     async login(req, res) {
         const user = await User.findOne({ name: req.body.name });
 
+        // eslint-disable-next-line no-underscore-dangle
         req.session.userId = user._id;
         // switched to send response in form of objects
         res.send({

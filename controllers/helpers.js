@@ -1,5 +1,6 @@
 const crypto = require('crypto');
 const util = require('util');
+
 const scrypt = util.promisify(crypto.scrypt);
 
 // NOTE: declared the functions outside the module.exports
@@ -12,10 +13,11 @@ async function hashPassword(password, salt) {
     // @return: the password and the salt are seperated by a .
     // like this => 'hashedPassowrd.salt'
 
+    // eslint-disable-next-line no-param-reassign
     salt = salt || crypto.randomBytes(4).toString('hex');
     const buff = await scrypt(password, salt, 64);
     const hashed = buff.toString('hex');
-    return hashed + '.' + salt;
+    return `${hashed}.${salt}`;
 }
 
 async function comparePasswords(saved, supplied) {
@@ -23,7 +25,8 @@ async function comparePasswords(saved, supplied) {
     // @params: <supplied> password inserted by the user, not hashed
     // @return: hashed the supplied and compares them
 
-    const [hashed, salt] = saved.split('.');
+    // eslint-disable-next-line no-unused-vars
+    const [_, salt] = saved.split('.');
     const hashedSupplied = await hashPassword(supplied, salt);
     return hashedSupplied === saved;
 }

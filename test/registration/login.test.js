@@ -1,9 +1,6 @@
 const assert = require('assert');
-const mongoose = require('mongoose');
 const request = require('supertest');
 const app = require('../../app');
-
-const User = mongoose.model('user');
 
 describe('Logs a user in', () => {
     beforeEach((done) => {
@@ -29,6 +26,7 @@ describe('Logs a user in', () => {
             .send({
                 name: 'tester',
                 password: 'password',
+                msg: 'from here',
             })
             .end((_, res) => {
                 assert.strictEqual(res.body.redirect, '/');

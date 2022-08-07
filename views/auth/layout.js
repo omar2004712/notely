@@ -1,5 +1,4 @@
-module.exports = ({ content, title }) => {
-    return `
+module.exports = ({ content, title }) => `
   <!DOCTYPE html>
     <html lang="en">
         <head>
@@ -19,11 +18,9 @@ module.exports = ({ content, title }) => {
             src="https://kit.fontawesome.com/7ecb8aa263.js"
             crossorigin="anonymous"
             ></script>
+            <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
         </head>
         <body>
             ${content}
-            <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-            <script src="register.js"></script>
         </body>
     </html>`;
-};

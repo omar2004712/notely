@@ -1,5 +1,4 @@
 const assert = require('assert');
-const request = require('supertest');
 const session = require('supertest-session');
 const app = require('../../app');
 
@@ -10,6 +9,7 @@ describe('Logs out from the website', () => {
         testSession = session(app);
         const notes = [];
 
+        // eslint-disable-next-line no-plusplus
         for (let i = 1; i < 40; i++) {
             notes.push({
                 title: `Note ${i}`,
@@ -25,13 +25,13 @@ describe('Logs out from the website', () => {
                 confirmPassword: 'password',
                 notes,
             })
-            .end((_, res) => {
+            .end(() => {
                 done();
             });
     });
 
     it('GET /api/logout', (done) => {
-        testSession.get('/api/logout').end((_, res) => {
+        testSession.get('/api/logout').end(() => {
             testSession.get('/').end((_, res) => {
                 assert.strictEqual(res.text, 'Found. Redirecting to /register');
                 done();

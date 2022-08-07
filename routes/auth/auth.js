@@ -1,14 +1,12 @@
 const express = require('express');
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
 const registerTemplate = require('../../views/auth/auth');
 const {
-    requireNameLI,
-    requirePasswordLI,
-    requireNameR,
-    requirePasswordR,
+    requireName,
+    requirePassword,
     requireConfirmPasswordR,
 } = require('./validators');
-const { handleErrors } = require('../middlewares');
+const { handleErrors } = require('../middleware');
 const { login, logout, register } = require('../../controllers/auth');
 
 const router = express.Router();
@@ -19,15 +17,15 @@ router.get('/register', (_, res) => {
 
 router.post(
     '/api/login',
-    [requireNameLI, requirePasswordLI],
-    handleErrors(registerTemplate),
+    [requireName(), requirePassword()],
+    handleErrors(),
     login
 );
 
 router.post(
     '/api/register',
-    [requireNameR, requirePasswordR, requireConfirmPasswordR],
-    handleErrors(registerTemplate),
+    [requireName(true), requirePassword(true), requireConfirmPasswordR],
+    handleErrors(),
     register
 );
 

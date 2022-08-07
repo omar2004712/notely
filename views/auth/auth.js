@@ -1,7 +1,7 @@
 const layout = require('./layout');
 
-module.exports = () => {
-    return layout({
+module.exports = () =>
+    layout({
         content: `
           <div class="root">
             <h1>Notely</h1>
@@ -51,7 +51,8 @@ module.exports = () => {
                   </main>
               </div>
             </div>
-          </div>`,
+          </div>
+          <script src="register.js"></script>
+          `,
         title: 'Notely - Register',
     });
-};

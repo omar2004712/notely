@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const editNoteTemplate = require('../../views/note/newNoteTemplate');
-const { requireAuth, handleErrors } = require('../middlewares');
+const { requireAuth, handleErrors } = require('../middleware');
 const { requireTitle, requireContent } = require('./validators');
 const {
     sendEditNoteTemplate,

@@ -1,5 +1,4 @@
-module.exports = ({ title, content }) => {
-    return `
+module.exports = ({ title, content }) => `
     <!DOCTYPE html>
     <html lang="en">
       <head>
@@ -26,4 +25,3 @@ module.exports = ({ title, content }) => {
     </html>
     
     `;
-};
