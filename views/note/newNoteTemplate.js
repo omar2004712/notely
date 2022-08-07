@@ -13,6 +13,16 @@ module.exports = ({ title, content, _id }) => {
         <div class="new-note">
           <header>
             <h1>${title || content ? 'Edit Note' : 'New note'}</h1>
+            ${
+                title || content
+                    ? `
+              <button>
+                <i class="fa-solid fa-share share-button"></i>
+                <label class="hover-note">share</label>
+              </button>
+              `
+                    : ''
+            }
             <button>
               <i class="fa-solid fa-floppy-disk save-button"></i>
               <label class="hover-note">save</label>
