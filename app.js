@@ -10,6 +10,7 @@ const homeRouter = require('./routes/home/home');
 const noteRouter = require('./routes/notes/note');
 const newNoteRouter = require('./routes/notes/newNote');
 const editNoteRouter = require('./routes/notes/editNote');
+const addEditorRouter = require('./routes/notes/addEditor');
 
 const app = express();
 
@@ -39,5 +40,6 @@ app.use(homeRouter);
 app.use(noteRouter);
 app.use(newNoteRouter);
 app.use(editNoteRouter);
+app.use(addEditorRouter);
 
 module.exports = app;

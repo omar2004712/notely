@@ -61,9 +61,28 @@ module.exports = ({ title, content, _id }) => {
             <label class="error content-error"></label>
           </main>
         </div>
+        <div class="search-box hidden">
+          <div class="close-container">
+            <i class="fa-solid fa-xmark close"></i>
+          </div>
+          <div class="search-input-container">
+            <input
+              type="text"
+              class="search-input"
+              placeholder="Search for someone"
+            />
+            <i class="fa-solid fa-magnifying-glass search-button"></i>
+          </div>
+          <div class="results dropdown scrollbar-hidden"></div>
+        </div>
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-        <script src="${title ? 'edit.js' : 'save.js'}"></script>
-        <script src="addSearchBox.js" /></script>
+        <script src="${title || content ? 'edit.js' : 'save.js'}"></script>
+        ${
+            title || content
+                ? `<script src="addSearchBox.js" /></script>
+            <script src="addEditor.js"></script>`
+                : ''
+        }
         `,
     });
 };

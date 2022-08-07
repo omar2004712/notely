@@ -186,6 +186,10 @@ a {
         font-size: 30px;
     }
 
+    .top-bar button .options-icon {
+        font-size: 20px;
+    }
+
     body {
         grid-template-rows: 40px 1fr;
     }

@@ -22,7 +22,6 @@ module.exports = ({ title, content }) => `
       </head>
       <body>
         ${content}
-        <script src="addEditor.js"></script>
       </body>
     </html>
     
