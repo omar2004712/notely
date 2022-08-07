@@ -22,7 +22,7 @@ module.exports = {
         const note = new Note({
             title,
             content,
-            creator: req.session.userId,
+            creatorId: req.session.userId,
             editors: [],
         });
 
@@ -41,10 +41,8 @@ module.exports = {
     },
 
     async sendEditNoteTemplate(req, res) {
-        const { notes } = await User.findById(req.session.userId, {
-            notes: { $elemMatch: { _id: req.query.id } },
-        });
-        res.send(editNoteTemplate(notes[0]));
+        const note = await Note.findById(req.query.id);
+        res.send(editNoteTemplate(note));
     },
 
     async update(req, res) {
