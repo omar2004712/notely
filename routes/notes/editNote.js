@@ -22,6 +22,10 @@ router.put(
     update
 );
 
+router.delete('/api/editor/:id', requireAuth, (req, res) => {
+    res.status(204).send({});
+});
+
 router.delete('/api/delete/:id', requireAuth, deleteNote);
 
 module.exports = router;

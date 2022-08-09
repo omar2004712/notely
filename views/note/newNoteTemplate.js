@@ -1,12 +1,30 @@
 const layout = require('./layout');
 
-module.exports = ({ title, content, _id }) => {
+module.exports = ({ title, content, _id, editors }) => {
     // added the _id param in case of a delete we send a delete request with
     // the id of the note
     let message = 'New Note';
     if (title) {
         message = 'Edit Note';
     }
+
+    function renderEditors(editors) {
+        if (!editors) {
+            return;
+        }
+        let result = '';
+        for (let editor of editors) {
+            result += `
+          <div class="editor">
+            <span>${editor.name}</span>
+            <i class="fa-solid fa-trash delete-editor-button" id="${editor._id}"></i>
+          </div>
+        `;
+        }
+
+        return result;
+    }
+
     return layout({
         title: title ? 'Notely - Edit' : 'Notely - New',
         content: `
@@ -75,6 +93,12 @@ module.exports = ({ title, content, _id }) => {
           </div>
           <div class="results dropdown scrollbar-hidden"></div>
         </div>
+        <button class="show-users-button">
+          <i class="fa-solid fa-angle-up"></i>
+        </button>
+        <div class="editors-wrapper hide">
+            ${renderEditors(editors)}
+        </div>
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
         <script src="${title || content ? 'edit.js' : 'save.js'}"></script>
         ${
@@ -83,6 +107,25 @@ module.exports = ({ title, content, _id }) => {
             <script src="addEditor.js"></script>`
                 : ''
         }
+        <script>
+          const editorsWrapper = document.querySelector('.editors-wrapper');
+
+          document.querySelector('.show-users-button').addEventListener('click', () => {
+            const showIcon = document.querySelector('.show-users-button i');
+            const isHidden = Array.from(editorsWrapper.classList).includes('hidden');
+            
+            editorsWrapper.classList.toggle('hide')
+            showIcon.classList.toggle('flip')
+          })
+
+          editorsWrapper.querySelectorAll('.delete-editor-button').forEach((EDB) => {
+            EDB.addEventListener('click', () => {
+              axios.delete(\`/api/editor/\${EDB.id}\`).then(() => {
+                EDB.parentElement.remove()
+              })
+            })
+          });
+        </script>
         `,
     });
 };

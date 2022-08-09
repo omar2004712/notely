@@ -41,7 +41,7 @@ module.exports = {
     },
 
     async sendEditNoteTemplate(req, res) {
-        const note = await Note.findById(req.query.id);
+        const note = await Note.findById(req.query.id).populate('editors');
         res.send(editNoteTemplate(note));
     },
 

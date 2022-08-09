@@ -8,6 +8,9 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+    overflow: hidden;
+    transition: background-color 200ms;
 }
 
 ::-webkit-scrollbar {
@@ -39,6 +42,8 @@ body {
     gap: 12px;
     border-radius: 5px;
     border: 2px solid rgb(115, 115, 115);
+    position: relative;
+    z-index: 00;
 }
 
 .new-note header {
@@ -188,6 +193,72 @@ a {
 
 .new-note header button .share-button {
     font-size: 28px;
+}
+
+.show-users-button {
+    position: fixed;
+    bottom: 4px;
+    font-size: 20px;
+    height: 52px;
+    width: 52px;
+    border-radius: 50%;
+    background-color: white;
+    box-shadow: 0 0 5px black;
+    color: gray;
+    border: none;
+    transition: background-color 200ms;
+    z-index: 100;
+}
+
+.show-users-button:hover {
+    background-color: rgb(225, 225, 225);
+}
+
+.editors-wrapper {
+    background-color: rgb(147, 187, 200);
+    box-shadow: 0 0 10px black;
+    display: flex;
+    flex-direction: column;
+    width: calc(90% - 16px);
+    max-width: 284px;
+    height: fit-content;
+    max-height: 200px;
+    min-width: 104px;
+    padding: 20px 8px 60px 8px;
+    position: fixed;
+    gap: 4px;
+    bottom: 0px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    overflow-y: auto;
+    transform: scaleY(1);
+    transform-origin: bottom;
+    transition: transform 200ms;
+}
+
+.editors-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.editor {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    padding: 12px;
+    background-color: rgb(199, 236, 255);
+    border-radius: 12px;
+}
+
+.editor span {
+    flex: 1;
+}
+
+.hide {
+    transform: scaleY(0);
+}
+
+.flip {
+    transform: scaleY(-1);
 }
 
 @media only screen and (max-width: 600px) {
