@@ -2,39 +2,36 @@ const express = require('express');
 const mongoose = require('mongoose');
 const { requireAuth } = require('../middleware');
 
+const User = mongoose.model('user');
+const Note = mongoose.model('note');
+
 const router = express.Router();
 
-router.get('/api/users', requireAuth, (req, res) => {
-    res.status(200).send([
+router.get('/api/users', requireAuth, async (req, res) => {
+    const user = await User.findById(req.session.userId);
+    const note = await Note.findById(req.query.note);
+    let editors = [];
+
+    if (note) {
+        // incase the user does note pass a correct note id skip
+        editors = note.editors;
+    }
+
+    const records = await User.aggregate([
         {
-            _id: '2e2oium09c3n',
-            name: 'Jason',
-        },
-        {
-            _id: '30c4m3qeeqwc',
-            name: 'Sam',
-        },
-        {
-            _id: '2sadasda9c3n',
-            name: 'Mike',
-        },
-        {
-            _id: 'dsfsdfsdf2e2',
-            name: 'George',
-        },
-        {
-            _id: '34nc29cn934c',
-            name: 'Micheal',
-        },
-        {
-            _id: '39c84n409409',
-            name: 'Walter',
+            $match: {
+                name: { $regex: req.query.name },
+                _id: {
+                    $ne: user._id, // to execlude the user from the output
+                    $nin: editors, // to execlude the editors from the output
+                },
+            },
         },
     ]);
+
+    res.status(200).send(records);
 });
 
-router.put('/api/users', requireAuth, (req, res) => {
-    console.log(req.body.userId, req.body.noteId);
-});
+router.put('/api/users', requireAuth, (req, res) => {});
 
 module.exports = router;

@@ -3,8 +3,11 @@ const searchInput = document.querySelector('.search-input');
 const results = document.querySelector('.results');
 
 searchButton.addEventListener('click', async () => {
+    // Added the id of the note to execlude all the already added editors
     const { data: users } = await axios.get(
-        `/api/users?name=${searchInput.value}`
+        `/api/users?name=${searchInput.value}&note=${new URLSearchParams(
+            window.location.search
+        ).get('id')}`
     );
 
     function renderUserOption(user) {
@@ -19,7 +22,7 @@ searchButton.addEventListener('click', async () => {
         return userElement;
     }
 
-    if (users.length === 0) {
+    if (users.length === 0 && page === 0) {
         results.innerHTML =
             '<span class="not-found-msg">Found no users :(</span>';
         return;
