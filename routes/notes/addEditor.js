@@ -32,6 +32,16 @@ router.get('/api/users', requireAuth, async (req, res) => {
     res.status(200).send(records);
 });
 
-router.put('/api/users', requireAuth, (req, res) => {});
+router.put('/api/users', requireAuth, async (req, res) => {
+    try {
+        const note = await Note.findByIdAndUpdate(req.body.noteId, {
+            $addToSet: { editors: req.body.userId },
+        });
+
+        res.status(200).send(note);
+    } catch (err) {
+        res.status(304).send(); // 304 status for note modified
+    }
+});
 
 module.exports = router;

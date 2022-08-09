@@ -22,7 +22,7 @@ searchButton.addEventListener('click', async () => {
         return userElement;
     }
 
-    if (users.length === 0 && page === 0) {
+    if (users.length === 0) {
         results.innerHTML =
             '<span class="not-found-msg">Found no users :(</span>';
         return;
@@ -36,21 +36,25 @@ searchButton.addEventListener('click', async () => {
 
         userEl
             .querySelector('.add-user-button')
-            .addEventListener('click', async () => {
-                await axios.put(
-                    '/api/users',
-                    {
-                        userId: userEl.id,
-                        noteId: new URLSearchParams(window.location.search).get(
-                            'id'
-                        ),
-                    },
-                    {
-                        headers: {
-                            'Content-Type': 'application/json',
+            .addEventListener('click', async function () {
+                axios
+                    .put(
+                        '/api/users',
+                        {
+                            userId: userEl.id,
+                            noteId: new URLSearchParams(
+                                window.location.search
+                            ).get('id'),
                         },
-                    }
-                );
+                        {
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                        }
+                    )
+                    .then((res) => {
+                        this.parentElement.remove();
+                    });
             });
     }
 });
