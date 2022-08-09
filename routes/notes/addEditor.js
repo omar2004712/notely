@@ -8,9 +8,14 @@ const Note = mongoose.model('note');
 const router = express.Router();
 
 router.get('/api/users', requireAuth, async (req, res) => {
+    const pageSize = 10;
     const user = await User.findById(req.session.userId);
     const note = await Note.findById(req.query.note);
     let editors = [];
+
+    if (req.query.name === '') {
+        return res.status(200).send([]);
+    }
 
     if (note) {
         // incase the user does note pass a correct note id skip
@@ -26,6 +31,12 @@ router.get('/api/users', requireAuth, async (req, res) => {
                     $nin: editors, // to execlude the editors from the output
                 },
             },
+        },
+        {
+            $skip: pageSize * req.query.page,
+        },
+        {
+            $limit: pageSize,
         },
     ]);
 
