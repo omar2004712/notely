@@ -49,8 +49,18 @@ router.put('/api/users', requireAuth, async (req, res) => {
             $addToSet: { editors: req.body.userId },
         });
 
-        res.status(200).send(note);
+        const user = await User.findByIdAndUpdate(req.body.userId, {
+            $push: {
+                notes: {
+                    $each: [req.body.noteId],
+                    $position: 0,
+                },
+            },
+        });
+
+        res.status(200).send({ note, user });
     } catch (err) {
+        console.log(err);
         res.status(304).send(); // 304 status for note modified
     }
 });

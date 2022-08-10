@@ -1,6 +1,16 @@
 const layout = require('./layout');
 
-module.exports = ({ title, content, _id, editors }) => {
+module.exports = ({ note, userId }) => {
+    let title, creatorId, content, editors, _id;
+
+    if (note) {
+        title = note.title;
+        content = note.content;
+        creatorId = note.creatorId;
+        editors = note.editors;
+        _id = note._id;
+    }
+
     // added the _id param in case of a delete we send a delete request with
     // the id of the note
     let message = 'New Note';
@@ -79,6 +89,9 @@ module.exports = ({ title, content, _id, editors }) => {
             <label class="error content-error"></label>
           </main>
         </div>
+        ${
+            title || content
+                ? `
         <div class="search-box hidden">
           <div class="close-container">
             <i class="fa-solid fa-xmark close"></i>
@@ -93,6 +106,9 @@ module.exports = ({ title, content, _id, editors }) => {
           </div>
           <div class="results dropdown scrollbar-hidden"></div>
         </div>
+        `
+                : ''
+        }
         <button class="show-users-button">
           <i class="fa-solid fa-angle-up"></i>
         </button>

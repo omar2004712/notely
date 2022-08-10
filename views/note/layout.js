@@ -19,6 +19,7 @@ module.exports = ({ title, content }) => `
           src="https://kit.fontawesome.com/7ecb8aa263.js"
           crossorigin="anonymous"
         ></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
       </head>
       <body>
         ${content}
