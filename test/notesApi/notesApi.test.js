@@ -12,28 +12,6 @@ describe('Notes Api', () => {
     let testSession;
 
     beforeEach(async () => {
-        // testSession = session(app);
-        // const notes = [];
-
-        // for (let i = 1; i < 40; i++) {
-        //     notes.push({
-        //         title: `Note ${i}`,
-        //         content: `This is the ${i}th note Welcome`,
-        //     });
-        // }
-
-        // testSession
-        //     .post('/api/register')
-        //     .send({
-        //         name: 'tester',
-        //         password: 'password',
-        //         confirmPassword: 'password',
-        //         notes,
-        //     })
-        //     .end((_, res) => {
-        //         done();
-        //     });
-
         const user = new User({
             name: 'tester',
             password: await hashPassword('password'),

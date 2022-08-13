@@ -7,7 +7,7 @@ const Note = mongoose.model('note');
 
 const router = express.Router();
 
-router.get('/api/users', requireAuth, async (req, res) => {
+router.get('/api/users', async (req, res) => {
     const pageSize = 10;
     const user = await User.findById(req.session.userId);
     const note = await Note.findById(req.query.note);
@@ -61,7 +61,7 @@ router.put('/api/users', requireAuth, async (req, res) => {
         res.status(200).send({ note, user });
     } catch (err) {
         console.log(err);
-        res.status(304).send(); // 304 status for note modified
+        res.status(304).send(); // 304 status for not modified
     }
 });
 

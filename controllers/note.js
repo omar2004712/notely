@@ -37,7 +37,9 @@ module.exports = {
             },
         });
 
-        res.status(204).send();
+        res.status(201).send(note); // sending the note for testing
+
+        res.end();
     },
 
     async sendEditNoteTemplate(req, res) {
