@@ -44,6 +44,8 @@ router.get('/api/users', async (req, res) => {
 });
 
 router.put('/api/users', requireAuth, async (req, res) => {
+    // adds editors to the note
+
     try {
         const note = await Note.findByIdAndUpdate(req.body.noteId, {
             $addToSet: { editors: req.body.userId },
