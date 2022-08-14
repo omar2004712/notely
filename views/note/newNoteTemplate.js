@@ -136,7 +136,7 @@ module.exports = ({ note, userId }) => {
 
           editorsWrapper.querySelectorAll('.delete-editor-button').forEach((EDB) => {
             EDB.addEventListener('click', () => {
-              axios.delete(\`/api/editor/\${EDB.id}\`).then(() => {
+              axios.delete(\`/api/editor/\${EDB.id}/\${document.querySelector('.new-note-container').id}\`).then(() => {
                 EDB.parentElement.remove()
               })
             })

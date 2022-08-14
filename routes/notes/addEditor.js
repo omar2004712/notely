@@ -67,4 +67,24 @@ router.put('/api/users', requireAuth, async (req, res) => {
     }
 });
 
+router.delete(
+    '/api/editor/:editorId/:noteId',
+    requireAuth,
+    async (req, res) => {
+        const queries = [];
+        queries.push(
+            User.findByIdAndUpdate(req.params.editorId, {
+                $pull: { notes: { $eq: req.params.noteId } },
+            }),
+            Note.findByIdAndUpdate(req.params.noteId, {
+                $pull: { editors: { $eq: req.params.editorId } },
+            })
+        );
+
+        Promise.all(queries).then(() => {
+            res.status(204).send();
+        });
+    }
+);
+
 module.exports = router;
