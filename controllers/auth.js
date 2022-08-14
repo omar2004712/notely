@@ -14,6 +14,7 @@ module.exports = {
         req.session.userId = user._id;
         res.send({
             redirect: '/',
+            user,
         });
     },
     async login(req, res) {

@@ -15,7 +15,7 @@ describe('Registers a new user', () => {
                 confirmPassword: 'password',
             })
             .end(async (_, res) => {
-                assert.deepStrictEqual(res.body, { redirect: '/' });
+                assert.strictEqual(res.body.redirect, '/');
                 const user = await User.findOne({ name: 'tester' });
                 assert(user);
                 done();

@@ -81,9 +81,9 @@ router.delete(
             })
         );
 
-        Promise.all(queries).then(() => {
-            res.status(204).send();
-        });
+        await Promise.all(queries);
+
+        res.status(204).send();
     }
 );
 
