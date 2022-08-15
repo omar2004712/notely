@@ -18,7 +18,8 @@ function addSaveRequest() {
                 }
             )
             .then((res) => {
-                if (res.status === 204) {
+                if (res.status === 201) {
+                    // fixed the status code
                     window.location = '/';
                 }
 

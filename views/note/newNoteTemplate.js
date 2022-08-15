@@ -11,6 +11,12 @@ module.exports = ({ note, userId }) => {
         _id = note._id;
     }
 
+    let isCreator = false;
+
+    if (creatorId) {
+        isCreator = creatorId.toString() === userId.toString();
+    }
+
     // added the _id param in case of a delete we send a delete request with
     // the id of the note
     let message = 'New Note';
@@ -18,7 +24,7 @@ module.exports = ({ note, userId }) => {
         message = 'Edit Note';
     }
 
-    function renderEditors(editors) {
+    function renderEditors(editors, isCreator) {
         if (!editors) {
             return;
         }
@@ -27,7 +33,11 @@ module.exports = ({ note, userId }) => {
             result += `
           <div class="editor">
             <span>${editor.name}</span>
-            <i class="fa-solid fa-trash delete-editor-button" id="${editor._id}"></i>
+            ${
+                isCreator
+                    ? `<i class="fa-solid fa-trash delete-editor-button" id="${editor._id}"></i>`
+                    : ''
+            }
           </div>
         `;
         }
@@ -42,7 +52,7 @@ module.exports = ({ note, userId }) => {
           <header>
             <h1>${title || content ? 'Edit Note' : 'New note'}</h1>
             ${
-                title || content
+                (title || content) && isCreator
                     ? `
               <button>
                 <i class="fa-solid fa-share share-button"></i>
@@ -56,7 +66,7 @@ module.exports = ({ note, userId }) => {
               <label class="hover-note">save</label>
             </button>
             ${
-                title || content
+                (title || content) && isCreator
                     ? `
             <button>
               <i class="fa-solid fa-trash delete-button" id="${_id}"></i>
@@ -109,12 +119,19 @@ module.exports = ({ note, userId }) => {
         `
                 : ''
         }
+        ${
+            title || content
+                ? `
         <button class="show-users-button">
           <i class="fa-solid fa-angle-up"></i>
         </button>
         <div class="editors-wrapper hide">
-            ${renderEditors(editors)}
+            ${renderEditors(editors, isCreator)}
         </div>
+        `
+                : ''
+        }
+        
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
         <script src="${title || content ? 'edit.js' : 'save.js'}"></script>
         ${
