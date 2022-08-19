@@ -6,7 +6,7 @@ module.exports = () =>
           <div class="root">
             <h1>Notely</h1>
             <div class="forms">
-              <div class="register">
+              <div class="register hidden">
                 <header class="register-sign">
                     <div class="main-sign">Register</div>
                     <div class="sub-sign">Log In</div>
@@ -31,7 +31,7 @@ module.exports = () =>
                   <button class="register-submit">Register</button>
                 </main>
               </div>
-              <div class="login hidden">
+              <div class="login">
                 <header class="register-sign">
                     <div class="sub-sign">Register</div>
                     <div class="main-sign">Log In</div>
