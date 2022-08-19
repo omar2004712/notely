@@ -20,7 +20,7 @@ function addSaveRequest() {
             .then((res) => {
                 if (res.status === 201) {
                     // fixed the status code
-                    window.location = '/';
+                    return (window.location = '/'); // to stop any none existing errors "undefined" to show up on the screen while loading
                 }
 
                 for (let error in res.data) {
