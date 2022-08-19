@@ -10,17 +10,19 @@ axios
             },
         }
     )
-    .then(({ data: { notes } }) => {
+    .then(({ data: { notes, _id } }) => {
         if (notes.length === 0) {
             return;
         }
 
         const notesColumns = document.querySelectorAll('.notes-column');
 
-        function renderNote({ title, content, _id }) {
+        function renderNote({ title, content, _id, creatorId }, userId) {
             // added an id prop for editing on click
             return `
-            <div class="note" id="${_id}">
+            <div class="note ${
+                creatorId === userId ? 'blue' : 'green'
+            }" id="${_id}">
                 <div class="note-head">
                     <h2 class="note-title">
                         ${title}
@@ -37,7 +39,7 @@ axios
         }
 
         for (let i = 0; i < notes.length; i++) {
-            const renderedNote = renderNote(notes[i]);
+            const renderedNote = renderNote(notes[i], _id);
             switch (i % 3) {
                 case 0:
                     notesColumns[0].innerHTML += renderedNote;

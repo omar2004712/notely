@@ -31,7 +31,7 @@ module.exports = ({ note, userId }) => {
         let result = '';
         for (let editor of editors) {
             result += `
-          <div class="editor">
+          <div class="editor ${isCreator ? 'pale-blue' : 'pale-green'}">
             <span>${editor.name}</span>
             ${
                 isCreator
@@ -48,7 +48,7 @@ module.exports = ({ note, userId }) => {
     return layout({
         title: title ? 'Notely - Edit' : 'Notely - New',
         content: `
-        <div class="new-note">
+        <div class="new-note ${isCreator ? 'blue' : 'green'}">
           <header>
             <h1>${title || content ? 'Edit Note' : 'New note'}</h1>
             ${
@@ -125,7 +125,7 @@ module.exports = ({ note, userId }) => {
         <button class="show-users-button">
           <i class="fa-solid fa-angle-up"></i>
         </button>
-        <div class="editors-wrapper hide">
+        <div class="editors-wrapper ${isCreator ? 'blue' : 'green'} hide">
             ${renderEditors(editors, isCreator)}
         </div>
         `
@@ -133,32 +133,16 @@ module.exports = ({ note, userId }) => {
         }
         
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-        <script src="${title || content ? 'edit.js' : 'save.js'}"></script>
+        <script src="${
+            title || content ? 'notCreatorEdit.js' : 'save.js'
+        }"></script>
         ${
-            title || content
+            (title || content) && isCreator
                 ? `<script src="addSearchBox.js" /></script>
-            <script src="addEditor.js"></script>`
+                   <script src="addEditor.js"></script>`
                 : ''
         }
-        <script>
-          const editorsWrapper = document.querySelector('.editors-wrapper');
-
-          document.querySelector('.show-users-button').addEventListener('click', () => {
-            const showIcon = document.querySelector('.show-users-button i');
-            const isHidden = Array.from(editorsWrapper.classList).includes('hidden');
-            
-            editorsWrapper.classList.toggle('hide')
-            showIcon.classList.toggle('flip')
-          })
-
-          editorsWrapper.querySelectorAll('.delete-editor-button').forEach((EDB) => {
-            EDB.addEventListener('click', () => {
-              axios.delete(\`/api/editor/\${EDB.id}/\${document.querySelector('.new-note-container').id}\`).then(() => {
-                EDB.parentElement.remove()
-              })
-            })
-          });
-        </script>
+        ${isCreator ? `<script src="creatorEdit.js"></script>` : ''}
         `,
     });
 };

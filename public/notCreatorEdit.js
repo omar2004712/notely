@@ -1,15 +1,3 @@
-function addDeleteRequest() {
-    const deleteButton = document.querySelector('.delete-button');
-
-    deleteButton.addEventListener('click', () => {
-        axios.delete(`/api/delete/${deleteButton.id}`).then((res) => {
-            if (res.status === 202) {
-                window.location = '/';
-            }
-        });
-    });
-}
-
 function addEditRequest() {
     const newNoteContainer = document.querySelector('.new-note-container');
     const saveButton = document.querySelector('.save-button');
@@ -45,4 +33,13 @@ function addEditRequest() {
 }
 
 addEditRequest();
-addDeleteRequest();
+
+const editorsWrapper = document.querySelector('.editors-wrapper');
+
+document.querySelector('.show-users-button').addEventListener('click', () => {
+    const showIcon = document.querySelector('.show-users-button i');
+    const isHidden = Array.from(editorsWrapper.classList).includes('hidden');
+
+    editorsWrapper.classList.toggle('hide');
+    showIcon.classList.toggle('flip');
+});
