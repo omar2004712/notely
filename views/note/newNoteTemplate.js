@@ -48,7 +48,9 @@ module.exports = ({ note, userId }) => {
     return layout({
         title: title ? 'Notely - Edit' : 'Notely - New',
         content: `
-        <div class="new-note ${isCreator ? 'blue' : 'green'}">
+        <div class="new-note ${
+            isCreator || creatorId === undefined ? 'blue' : 'green' // fix for the background color of the new note
+        }">
           <header>
             <h1>${title || content ? 'Edit Note' : 'New note'}</h1>
             ${
