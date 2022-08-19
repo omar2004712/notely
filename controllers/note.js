@@ -11,7 +11,13 @@ module.exports = {
 
         const notes = await User.findById(req.session.userId, {
             notes: { $slice: [index, pageSize] },
-        }).populate('notes');
+        }).populate({
+            path: 'notes',
+            populate: {
+                path: 'creatorId',
+                model: 'user',
+            },
+        });
 
         res.send(notes);
     },

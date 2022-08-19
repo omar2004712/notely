@@ -21,7 +21,7 @@ axios
             // added an id prop for editing on click
             return `
             <div class="note ${
-                creatorId === userId ? 'blue' : 'green'
+                creatorId._id === userId ? 'blue' : 'green'
             }" id="${_id}">
                 <div class="note-head">
                     <h2 class="note-title">
@@ -34,6 +34,7 @@ axios
                 <div class="content">
                     ${content.replace(/\n/g, '<br />')}
                 </div>
+                <span class="created-by">created by ${creatorId.name}</span>
             </div>
       `;
         }

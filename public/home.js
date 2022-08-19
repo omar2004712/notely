@@ -6,7 +6,7 @@ async function requestNotesOnScroll() {
     }
 
     const {
-        data: { notes },
+        data: { notes, _id },
     } = await axios.post(
         '/api/notes',
         {
@@ -30,26 +30,30 @@ async function requestNotesOnScroll() {
 
     const notesColumns = document.querySelectorAll('.notes-column');
 
-    function renderNote({ title, content, _id }) {
+    function renderNote({ title, content, _id, creatorId }, userId) {
+        // added an id prop for editing on click
         return `
-            <div class="note" id="${_id}">
-                <div class="note-head">
-                    <h2 class="note-title">
-                        ${title}
-                    </h2>
-                    <a href="/edit-note?id=${_id}">
-                    <i class="fa-solid fa-pen edit-button"></i>
-                    </a>
-                </div>
-                <div class="content">
-                    ${content.replace(/\n/g, '<br />')}
-                </div>
+        <div class="note ${
+            creatorId._id === userId ? 'blue' : 'green'
+        }" id="${_id}">
+            <div class="note-head">
+                <h2 class="note-title">
+                    ${title}
+                </h2>
+                <a href="/edit-note?id=${_id}">
+                <i class="fa-solid fa-pen edit-button"></i>
+                </a>
             </div>
+            <div class="content">
+                ${content.replace(/\n/g, '<br />')}
+            </div>
+            <span class="created-by">created by ${creatorId.name}</span>
+        </div>
         `;
     }
 
     for (let i = 0; i < notes.length; i++) {
-        const renderedNote = renderNote(notes[i]);
+        const renderedNote = renderNote(notes[i], _id);
         switch (i % 3) {
             case 0:
                 notesColumns[0].innerHTML += renderedNote;
