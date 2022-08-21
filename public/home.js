@@ -28,7 +28,7 @@ async function requestNotesOnScroll() {
         return;
     }
 
-    const notesContainer = document.querySelectorAll('.notes-container');
+    const notesContainer = document.querySelector('.notes-container'); // fix used querySelector instead of querySelectorAll
 
     function renderNote(
         { title, content, _id, creatorId },
@@ -36,26 +36,30 @@ async function requestNotesOnScroll() {
         parentNode
     ) {
         // added an id prop for editing on click
-        const note = document.createElement('div');
-        note.classList.add('note', creatorId._id === userId ? 'blue' : 'green');
+        const noteContainer = document.createElement('div');
+        noteContainer.classList.add('note-container');
 
-        note.innerHTML = `
-        <div class="note-head">
-            <h2 class="note-title">
-                ${title}
-            </h2>
-            <a href="/edit-note?id=${_id}">
-            <i class="fa-solid fa-pen edit-button"></i>
-            </a>
-        </div>
-        <div class="content">
-            ${content.replace(/\n/g, '<br />')}
-        </div>
-        <span class="created-by">created by ${creatorId.name}</span>
-        `;
+        noteContainer.innerHTML = `
+            <div class="note ${creatorId._id === userId ? 'blue' : 'green'}">
+                <div class="note-head">
+                <h2 class="note-title">
+                    ${title}
+                </h2>
+                <a href="/edit-note?id=${_id}">
+                <i class="fa-solid fa-pen edit-button"></i>
+                </a>
+                </div>
+                <div class="content">
+                    ${content.replace(/\n/g, '<br />')}
+                </div>
+                <span class="created-by">created by ${creatorId.name}</span>
+            </div>
+            `;
 
-        parentNode.append(note);
-        console.log(note);
+        parentNode.append(noteContainer);
+
+        const note = noteContainer.querySelector('.note');
+        noteContainer.style.gridRowEnd = `span ${note.clientHeight + 8}`;
     }
 
     for (let i = 0; i < notes.length; i++) {

@@ -135,12 +135,6 @@ a {
     width: calc(100vw - 16px);
 }
 
-.notes-column {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
 .note-container {
     display: flex;
     justify-content: center;
@@ -208,6 +202,9 @@ a {
 }
 
 @media only screen and (max-width: 800px) {
+    .top-bar {
+        width: 100vw;
+    }
     .top-bar .web-title {
         font-size: 30px;
     }
