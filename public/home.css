@@ -120,11 +120,19 @@ a {
     flex: 1;
 }
 
+.center {
+    display: flex;
+    justify-content: center;
+}
+
 .notes-container {
     display: grid;
     padding: 8px;
-    grid-template-columns: repeat(3, calc((100% - 32px) / 3));
+    grid-template-columns: repeat(auto-fill, 250px);
+    grid-auto-rows: 1px;
     column-gap: 8px;
+    justify-content: center;
+    width: calc(100vw - 16px);
 }
 
 .notes-column {
@@ -133,14 +141,20 @@ a {
     gap: 8px;
 }
 
+.note-container {
+    display: flex;
+    justify-content: center;
+}
+
 .note {
-    width: calc(100% - 16px);
+    width: 234px;
     padding: 8px;
     display: flex;
     flex-direction: column;
     gap: 10px;
     border-radius: 4px;
     word-wrap: break-word;
+    height: fit-content;
 }
 
 .blue {
@@ -208,19 +222,9 @@ a {
 
     .notes-container {
         padding: 2vw;
-        column-gap: 2vw;
-        grid-template-rows: repeat(3, 30vw);
     }
 
     .edit-button {
         opacity: 1;
-    }
-
-    .notes-column {
-        gap: 2vw;
-    }
-
-    .note-title {
-        font-size: 18px;
     }
 }

@@ -15,41 +15,41 @@ axios
             return;
         }
 
-        const notesColumns = document.querySelectorAll('.notes-column');
+        const notesContainer = document.querySelector('.notes-container');
 
-        function renderNote({ title, content, _id, creatorId }, userId) {
+        function renderNote(
+            { title, content, _id, creatorId },
+            userId,
+            parentNode
+        ) {
             // added an id prop for editing on click
-            return `
-            <div class="note ${
-                creatorId._id === userId ? 'blue' : 'green'
-            }" id="${_id}">
+            const noteContainer = document.createElement('div');
+            noteContainer.classList.add('note-container');
+
+            noteContainer.innerHTML = `
+            <div class="note ${creatorId._id === userId ? 'blue' : 'green'}">
                 <div class="note-head">
-                    <h2 class="note-title">
-                        ${title}
-                    </h2>
-                    <a href="/edit-note?id=${_id}">
-                    <i class="fa-solid fa-pen edit-button"></i>
-                    </a>
+                <h2 class="note-title">
+                    ${title}
+                </h2>
+                <a href="/edit-note?id=${_id}">
+                <i class="fa-solid fa-pen edit-button"></i>
+                </a>
                 </div>
                 <div class="content">
                     ${content.replace(/\n/g, '<br />')}
                 </div>
                 <span class="created-by">created by ${creatorId.name}</span>
             </div>
-      `;
+            `;
+
+            parentNode.append(noteContainer);
+
+            const note = noteContainer.querySelector('.note');
+            noteContainer.style.gridRowEnd = `span ${note.clientHeight + 8}`;
         }
 
         for (let i = 0; i < notes.length; i++) {
-            const renderedNote = renderNote(notes[i], _id);
-            switch (i % 3) {
-                case 0:
-                    notesColumns[0].innerHTML += renderedNote;
-                    break;
-                case 1:
-                    notesColumns[1].innerHTML += renderedNote;
-                    break;
-                case 2:
-                    notesColumns[2].innerHTML += renderedNote;
-            }
+            renderNote(notes[i], _id, notesContainer);
         }
     });

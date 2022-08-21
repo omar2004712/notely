@@ -25,13 +25,9 @@ module.exports = () =>
           </button>
           </header>
           <div class="top-bar-placeholder"></div>
-          <main class="notes-container">
-            <div class="notes-column">
-              
-            </div>
-            <div class="notes-column"></div>
-            <div class="notes-column"></div>
-          </main>
+          <div class="center">
+            <main class="notes-container"></main>
+          </div>
 
           <script>
             document.querySelector(".options-icon").addEventListener("click", () => {
