@@ -23,6 +23,10 @@ function addSaveRequest() {
                     return (window.location = '/'); // to stop any none existing errors "undefined" to show up on the screen while loading
                 }
 
+                document.querySelectorAll('.error').forEach((el) => {
+                    el.innerText = ''; // to emplty all the previous errors
+                });
+
                 for (let error in res.data) {
                     document.querySelector(`.${error}-error`).innerText =
                         res.data[error].msg;

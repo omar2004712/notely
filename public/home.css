@@ -201,7 +201,7 @@ a {
     transform: scale(0, 0);
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (pointer: coarse) {
     .top-bar {
         width: 100vw;
     }
