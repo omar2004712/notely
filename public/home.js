@@ -1,4 +1,4 @@
-let notesIndex = 18; // this varialbe will store at which index of notes we are in
+let notesIndex = 1; // this varialbe will store at which index of notes we are in
 
 async function requestNotesOnScroll() {
     if (document.body.scrollHeight - window.scrollY !== window.innerHeight) {

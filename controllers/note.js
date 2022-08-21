@@ -7,10 +7,10 @@ const Note = mongoose.model('note');
 module.exports = {
     async feedNotes(req, res) {
         const { index } = req.body;
-        const pageSize = 18;
+        const pageSize = 30;
 
         const notes = await User.findById(req.session.userId, {
-            notes: { $slice: [index, pageSize] },
+            notes: { $slice: [index * pageSize, pageSize] },
         }).populate({
             path: 'notes',
             populate: {

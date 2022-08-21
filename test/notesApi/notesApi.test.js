@@ -51,13 +51,13 @@ describe('Notes Api', () => {
         testSession
             .post('/api/notes')
             .send({
-                index: 18,
+                index: 0,
             })
             .end((_, res) => {
-                assert.strictEqual(res.body.notes.length, 18);
+                assert.strictEqual(res.body.notes.length, 30);
                 assert.strictEqual(
                     res.body.notes[9].content,
-                    'This is the 28th note Welcome'
+                    'This is the 10th note Welcome'
                 );
                 done();
             });
