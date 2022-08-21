@@ -67,7 +67,10 @@ const loadUsers = async () => {
     page++;
 };
 
-searchButton.addEventListener('click', loadUsers);
+searchButton.addEventListener('click', () => {
+    results.innerHTML = ''; // to clear the existing results before adding new ones
+    loadUsers();
+});
 
 results.addEventListener('scroll', () => {
     if (results.scrollTop + results.offsetHeight >= results.scrollHeight) {
