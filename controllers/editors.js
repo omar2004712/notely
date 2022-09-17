@@ -10,6 +10,7 @@ module.exports = {
         const note = await Note.findById(req.query.note);
         let editors = [];
 
+        // if the user sends an empty search term return empty string
         if (req.query.name === '') {
             return res.status(200).send([]);
         }

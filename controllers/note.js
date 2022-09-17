@@ -54,6 +54,8 @@ module.exports = {
     },
 
     async update(req, res) {
+        /* fix check if the user is in the array of editors or the creator */
+
         await Note.findByIdAndUpdate(req.body._id, {
             title: req.body.title,
             content: req.body.content,
@@ -63,17 +65,10 @@ module.exports = {
     },
 
     async deleteNote(req, res) {
+        /* fix check if the user is in the array of editors or the creator */
+
         await Note.findByIdAndDelete(req.params.id);
-        await User.updateOne(
-            { _id: req.session.userId },
-            {
-                $pull: {
-                    notes: {
-                        _id: req.params.id,
-                    },
-                },
-            }
-        );
+
         res.status(202).send();
     },
 };
