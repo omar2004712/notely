@@ -55,11 +55,28 @@ module.exports = {
 
     async update(req, res) {
         /* fix check if the user is in the array of editors or the creator */
+        const updatedNote = await Note.findOneAndUpdate(
+            {
+                _id: req.body._id,
+                $or: [
+                    { editors: { $in: [req.session.userId] } },
+                    { creatorId: req.session.userId },
+                ],
+            },
+            {
+                title: req.body.title,
+                content: req.body.content,
+            },
+            {
+                returnNewDocument: true,
+            }
+        );
 
-        await Note.findByIdAndUpdate(req.body._id, {
-            title: req.body.title,
-            content: req.body.content,
-        });
+        if (!updatedNote) {
+            return res
+                .status(401)
+                .send({ error: 'you are neither the creator nor the editor.' });
+        }
 
         res.status(204).send();
     },
@@ -67,7 +84,19 @@ module.exports = {
     async deleteNote(req, res) {
         /* fix check if the user is in the array of editors or the creator */
 
-        await Note.findByIdAndDelete(req.params.id);
+        const deletedNote = await Note.findOneAndDelete({
+            _id: req.params.id,
+            $or: [
+                { editors: { $in: [req.session.userId] } },
+                { creatorId: req.session.userId },
+            ],
+        });
+
+        if (!deletedNote) {
+            return res.status(401).send({
+                error: 'you are neither the creator nor the editor.',
+            });
+        }
 
         res.status(202).send();
     },
