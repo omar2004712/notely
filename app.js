@@ -18,8 +18,6 @@ if (process.env.NODE_ENV !== 'test') {
     mongoose.connect('mongodb://localhost/notely');
 }
 
-// app.use(cors()); // to enable requests from the test env
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 

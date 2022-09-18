@@ -1,5 +1,3 @@
-const url = 'http://localhost:3000';
-
 function switchPages() {
     document.querySelector('.register').classList.toggle('hidden');
     document.querySelector('.login').classList.toggle('hidden');
@@ -11,7 +9,7 @@ document
 document.querySelector('.login-submit').addEventListener('click', async () => {
     const form = document.querySelector('#login-form');
     const { data: res } = await axios.post(
-        url + '/api/login',
+        '/api/login',
         {
             name: form.querySelector('.name').value,
             password: form.querySelector('.password').value,
@@ -37,7 +35,7 @@ document
     .addEventListener('click', async () => {
         const form = document.querySelector('#register-form');
         const { data: res } = await axios.post(
-            url + '/api/register',
+            '/api/register',
             {
                 name: form.querySelector('.name').value,
                 password: form.querySelector('.password').value,
