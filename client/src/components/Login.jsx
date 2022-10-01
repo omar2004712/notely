@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Input from './Input';
 import RegisterForm from './RegisterForm';
+import RegisterButton from './RegisterButton';
 
 function Login() {
   const [name, setName] = useState('');
@@ -56,12 +57,7 @@ function Login() {
         label="Password"
         errMsg={passwordErrMsg}
       />
-      <button
-        type="submit"
-        className="text-xl py-2 w-[100%] bg-yellow-400 rounded-b-xl text-white hover:bg-yellow-300 mt-4"
-      >
-        login
-      </button>
+      <RegisterButton innerText="login" />
     </RegisterForm>
   );
 }
