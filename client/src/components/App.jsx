@@ -1,11 +1,9 @@
+import '../styles/index.css';
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { getAuth } from '../actions';
 import { BrowserRouter, Route } from 'react-router-dom';
-
-function Header() {
-  return <h1>Header</h1>;
-}
+import Header from './Header';
 
 function Landing() {
   return <h1>Landing</h1>;
@@ -33,14 +31,14 @@ function App({ getAuth }) {
   }, []);
 
   return (
-    <div>
+    <div className="font-['Product_Sans']">
       <BrowserRouter>
         <Route path="/" component={Header} />
         <Route path="/" exact component={Landing} />
         <Route path="/notes" exact component={Notes} />
         <Route path="/edit_note" exact component={NoteEditor} />
-        <Route path="/login" component={Login} />
-        <Route path="/register" component={Register} />
+        <Route path="/login" exact component={Login} />
+        <Route path="/register" exact component={Register} />
       </BrowserRouter>
     </div>
   );
