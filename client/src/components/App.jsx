@@ -4,10 +4,7 @@ import { connect } from 'react-redux';
 import { getAuth } from '../actions';
 import { BrowserRouter, Route } from 'react-router-dom';
 import Header from './Header';
-
-function Landing() {
-  return <h1>Landing</h1>;
-}
+import Landing from './Landing';
 
 function Login() {
   return <h1>Login</h1>;
@@ -28,7 +25,7 @@ function Notes() {
 function App({ getAuth }) {
   useEffect(() => {
     getAuth();
-  }, []);
+  }, [getAuth]);
 
   return (
     <div className="font-['Product_Sans']">

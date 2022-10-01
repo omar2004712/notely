@@ -17,7 +17,7 @@ function Header({ auth }) {
   };
 
   return (
-    <div className="flex justify-center fixed w-[100vw] p-3 bg-yellow-400">
+    <div className="flex justify-center fixed w-[100vw] p-3 bg-yellow-400 top-0 left-0">
       <h1 className="flex-1 text-4xl">Notely</h1>
       {renderButtons()}
     </div>
