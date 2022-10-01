@@ -42,7 +42,7 @@ export default function Register() {
       <div className="flex w-[100%] items-center text-2xl">
         <Link
           to="/login"
-          className="transition-all bg-gray-100 rounded-bl hover:bg-gray-200 text-center flex-1 p-2"
+          className="transition-all bg-gray-100 rounded-br hover:bg-gray-200 text-center flex-1 p-2"
         >
           login
         </Link>
