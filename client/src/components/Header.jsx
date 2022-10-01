@@ -17,7 +17,11 @@ function Header({ auth }) {
         </a>
       );
     } else {
-      return <Link className={buttonClassNames}>login</Link>;
+      return (
+        <Link to="/login" className={buttonClassNames}>
+          login
+        </Link>
+      );
     }
   };
 
