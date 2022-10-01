@@ -6,10 +6,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import Header from './Header';
 import Landing from './Landing';
 import Login from './Login';
-
-function Register() {
-  return <h1>Register</h1>;
-}
+import Register from './Register';
 
 function NoteEditor() {
   return <h1>Note Editor</h1>;
