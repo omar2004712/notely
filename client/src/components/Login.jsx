@@ -36,7 +36,7 @@ function Login() {
       <div className="flex w-[100%] items-center text-2xl">
         <p className="text-center flex-1 p-2">login</p>
         <Link
-          className="transition-all bg-gray-100 rounded-bl hover:bg-gray-200 text-center flex-1 p-2"
+          className="transition-all bg-gray-100 rounded-bl rounded-tr-lg hover:bg-gray-200 text-center flex-1 p-2"
           to="/register"
         >
           register

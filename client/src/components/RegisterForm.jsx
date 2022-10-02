@@ -11,7 +11,7 @@ export default function RegisterForm({
     <div className="flex flex-col gap-5 items-center justify-center w-[100vw] h-[100vh]">
       <form
         onSubmit={onSubmit}
-        className="flex flex-col items-center max-w-[320px] w-[90vw] rounded-lg gap-2 shadow-[0_0_16px_rgb(220_222_226)] rounded-b-lg"
+        className="flex flex-col items-center max-w-[320px] w-[90vw] rounded-lg gap-2 shadow-[0_0_16px_rgb(220_222_226)]"
       >
         {children}
       </form>

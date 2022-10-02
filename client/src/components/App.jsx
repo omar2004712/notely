@@ -7,13 +7,10 @@ import Header from './Header';
 import Landing from './Landing';
 import Login from './Login';
 import Register from './Register';
+import Notes from './Notes';
 
 function NoteEditor() {
   return <h1>Note Editor</h1>;
-}
-
-function Notes() {
-  return <h1>Notes</h1>;
 }
 
 function App({ getAuth }) {
