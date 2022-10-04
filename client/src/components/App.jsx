@@ -8,10 +8,7 @@ import Landing from './Landing';
 import Login from './Login';
 import Register from './Register';
 import Notes from './Notes';
-
-function NoteEditor() {
-  return <h1>Note Editor</h1>;
-}
+import NoteEditor from './NoteEditor';
 
 function App({ getAuth }) {
   useEffect(() => {

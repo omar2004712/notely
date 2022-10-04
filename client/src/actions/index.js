@@ -16,3 +16,10 @@ export const getAuth = () => async (dispatch) => {
     payload: data._id,
   });
 };
+
+export const editNote = (note) => {
+  return {
+    type: 'EDIT_NOTE',
+    payload: note,
+  };
+};
