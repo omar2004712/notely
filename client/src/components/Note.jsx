@@ -1,5 +1,6 @@
 import '../styles/index.css';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 function Note({ note, auth }) {
@@ -18,7 +19,12 @@ function Note({ note, auth }) {
           </p>
         </div>
         <div>
-          <i className="text-gray-400 cursor-pointer hover:text-gray-500 fa-solid fa-pen edit-button md:opacity-0 md:group-hover:opacity-100"></i>
+          <Link to={`/edit_note?${note._id}`}>
+            <i
+              title="edit note"
+              className="text-gray-400 cursor-pointer hover:text-gray-500 fa-solid fa-pen edit-button md:opacity-0 md:group-hover:opacity-100"
+            ></i>
+          </Link>
         </div>
       </div>
     </div>
