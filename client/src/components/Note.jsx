@@ -19,7 +19,7 @@ function Note({ note, auth }) {
           </p>
         </div>
         <div>
-          <Link to={`/edit_note?${note._id}`}>
+          <Link to={`/edit_note?note_id=${note._id}`}>
             <i
               title="edit note"
               className="text-gray-400 cursor-pointer hover:text-gray-500 fa-solid fa-pen edit-button md:opacity-0 md:group-hover:opacity-100"
