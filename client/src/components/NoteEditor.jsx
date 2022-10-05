@@ -7,21 +7,38 @@ import axios from 'axios';
 function NoteEditor({ note }) {
   const [noteTitle, setNoteTitle] = useState(note ? note.title : '');
   const [noteContent, setNoteContent] = useState(note ? note.content : '');
+  const [noteTitleErrMsg, setNoteTitleErrMsg] = useState('');
+  const [noteContentErrMsg, setNoteContentErrMsg] = useState('');
 
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    console.log('note: ', note);
-    console.log(`title: ${noteTitle} ${note.title}`);
-    console.log(`content: ${noteContent} ${noteTitle}`);
+    let res;
 
-    const res = await axios.put('/api/edit-note', {
-      _id: note._id,
-      title: noteTitle,
-      content: noteContent,
-    });
+    if (note) {
+      res = await axios.put('/api/edit-note', {
+        _id: note._id,
+        title: noteTitle,
+        content: noteContent,
+      });
+    } else {
+      res = await axios.post('/api/save-note', {
+        title: noteTitle,
+        content: noteContent,
+      });
+    }
 
-    console.log(res.data);
+    if (res.status === 201 || res.status === 204) {
+      return (window.location = '/notes');
+    }
+
+    for (let error in res.data) {
+      if (error === 'title') {
+        setNoteTitleErrMsg(res.data[error].msg);
+      } else {
+        setNoteContentErrMsg(res.data[error].msg);
+      }
+    }
   };
 
   const renderTemplate = () => {
@@ -29,8 +46,10 @@ function NoteEditor({ note }) {
       <NoteForm
         note={{
           noteTitle,
+          noteTitleErrMsg,
           setNoteTitle,
           noteContent,
+          noteContentErrMsg,
           setNoteContent,
           onSubmit,
         }}
