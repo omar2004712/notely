@@ -17,14 +17,14 @@ export default function NoteForm({
         type="text"
         placeholder="Note Title"
         value={noteTitle}
-        onChange={(e) => setNoteTitle(e.value)}
+        onChange={(e) => setNoteTitle(e.target.value)} // fix: got the value of the target not the event
       />
       <label className={labelClass}>Note Content</label>
       <textarea
         className="flex-1 p-2 text-xl outline-none text-gray-500 bg-blue-50 rounded border-2 border-blue-50 focus:border-blue-300 resize-none"
         placeholder="Note Content"
         value={noteContent}
-        onChange={(e) => setNoteContent(e.value)}
+        onChange={(e) => setNoteContent(e.target.value)} // fix: got the value of the target not the event
       />
       <button
         className="bg-yellow-400 w-fit self-end px-3 py-[2px] rounded text-xl"
