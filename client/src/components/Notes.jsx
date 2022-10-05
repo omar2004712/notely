@@ -14,6 +14,7 @@ function Notes() {
   };
 
   useEffect(() => {
+    pageNumber = 0;
     window.addEventListener('scroll', async () => {
       const NAV_BAR_HEIGHT = 64; // the height of the nav bar 64px
       if (
