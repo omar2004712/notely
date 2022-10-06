@@ -9,6 +9,15 @@ import Login from './Login';
 import Register from './Register';
 import Notes from './Notes';
 import NoteEditor from './NoteEditor';
+import CreateButton from './CreateButton';
+
+function NewNote() {
+  return (
+    <div className="flex w-[100vw] h-[100vh] items-center justify-center">
+      New Note
+    </div>
+  );
+}
 
 function App({ getAuth }) {
   useEffect(() => {
@@ -16,7 +25,7 @@ function App({ getAuth }) {
   }, [getAuth]);
 
   return (
-    <div className="font-['Product_Sans']">
+    <div className="absolute font-['Product_Sans']">
       <BrowserRouter>
         <Route path="/" component={Header} />
         <Route path="/" exact component={Landing} />
@@ -24,6 +33,8 @@ function App({ getAuth }) {
         <Route path="/edit_note" exact component={NoteEditor} />
         <Route path="/login" exact component={Login} />
         <Route path="/register" exact component={Register} />
+        <Route path="/new_note" exact component={NewNote} />
+        <Route path={['/notes', '/']} exact component={CreateButton} />
       </BrowserRouter>
     </div>
   );
