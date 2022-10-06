@@ -48,9 +48,10 @@ function Notes() {
   }, [notes]);
 
   return (
+    // set width of 100vw to force the container to stretch all over the screen
     <div
       onScroll={onScroll}
-      className="overflow-auto h-[calc(100vh-64px)] grid gap-x-2 grid-cols-notes justify-center auto-rows-[1px] mt-[64px] p-4"
+      className="overflow-auto w-[100vw] h-[calc(100vh-64px)] grid gap-x-2 grid-cols-notes justify-center auto-rows-[1px] mt-[64px] p-4"
     >
       {renderNotes()}
     </div>

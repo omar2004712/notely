@@ -11,14 +11,6 @@ import Notes from './Notes';
 import NoteEditor from './NoteEditor';
 import CreateButton from './CreateButton';
 
-function NewNote() {
-  return (
-    <div className="flex w-[100vw] h-[100vh] items-center justify-center">
-      New Note
-    </div>
-  );
-}
-
 function App({ getAuth }) {
   useEffect(() => {
     getAuth();
@@ -30,10 +22,13 @@ function App({ getAuth }) {
         <Route path="/" component={Header} />
         <Route path="/" exact component={Landing} />
         <Route path="/notes" exact component={Notes} />
-        <Route path="/edit_note" exact component={NoteEditor} />
+        <Route
+          path={['/edit_note', '/new_note']}
+          exact
+          component={NoteEditor}
+        />
         <Route path="/login" exact component={Login} />
         <Route path="/register" exact component={Register} />
-        <Route path="/new_note" exact component={NewNote} />
         <Route path={['/notes', '/']} exact component={CreateButton} />
       </BrowserRouter>
     </div>
