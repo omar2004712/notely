@@ -24,7 +24,7 @@ passport.use(
             if (user) {
                 // user exists
                 // skip creation process
-                done(null, user);
+                return done(null, user); // fix: done does not terminate the function
             }
 
             const newUser = await new User({
